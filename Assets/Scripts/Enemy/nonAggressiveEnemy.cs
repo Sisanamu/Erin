@@ -5,6 +5,12 @@ using UnityEngine.UI;
 
 public class nonAggressiveEnemy : enemyController
 {
+    protected override void Update()
+    {
+        base.Update();
+        AimUi();
+    }
+
     private void LastAttack()
     {
         if (target != null && (transform.position - target.transform.position).magnitude > AttackRange)

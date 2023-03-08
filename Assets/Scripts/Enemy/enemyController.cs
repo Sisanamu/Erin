@@ -82,11 +82,10 @@ public class enemyController : MonoBehaviour
         UIWaitTime = GameManager.Instance.UIWaitTime;
         E_STATE = creature_STATE.IDLE;
     }
-    void Update()
+    protected virtual void Update()
     {
         if (isBattle)
             currentTime += Time.deltaTime;
-        AimUi();
         UpdateUI();
         switch (E_STATE)
         {
@@ -316,7 +315,7 @@ public class enemyController : MonoBehaviour
             }
         }
     }
-    void AimUi()
+    protected virtual void AimUi()
     {
         TargettingImage.transform.position = Camera.main.WorldToScreenPoint(transform.position + new Vector3(0, 0.5f, 0));
         Enemy_HP.transform.position = Camera.main.WorldToScreenPoint(transform.position + new Vector3(0, 2f, 0));
@@ -368,7 +367,7 @@ public class enemyController : MonoBehaviour
         Destroy(Enemy_Status_Effect.instance.go);
         targets.Clear();
         GameManager.Instance.IncreaseEXP(exp);
-        GameManager.Instance.ChangeGold(Gold + UnityEngine.Random.Range(1, 5));
+        GameManager.Instance.ChangeGold(Gold);
         DeBuffEffect.SetActive(false);
         CanSearch = false;
         isWalk = false;
@@ -396,6 +395,7 @@ public class enemyController : MonoBehaviour
     }
     IEnumerator WaitPoint()
     {
+        Canvas.SetActive(false);
         float StopTime = UnityEngine.Random.Range(2f, 3f);
         WaitTime = StartPatrolTime;
         WaitPos = new Vector3(SpawnPoint.position.x + UnityEngine.Random.Range(-PatrolRange, PatrolRange),

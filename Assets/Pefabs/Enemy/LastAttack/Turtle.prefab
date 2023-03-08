@@ -943,7 +943,7 @@ MonoBehaviour:
   - {fileID: 0}
   col: {fileID: 0}
   FindRange: 15
-  AttackRange: 1.7
+  AttackRange: 2.1
   attackDelay: 3
   currentTime: 0
   ratio: 0

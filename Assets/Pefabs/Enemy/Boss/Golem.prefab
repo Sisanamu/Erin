@@ -443,7 +443,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe42a3d6b3e1c48beac53f22a1d0c0d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: "\uACE8\uB818"
+  Name: "\uACE8\uB7A8"
   dropItem:
   - {fileID: 11400000, guid: e5f4d4e50a95b47f2b38d189b3654c09, type: 2}
   - {fileID: 11400000, guid: a6ae56135d98840b2b17999129f7f443, type: 2}
@@ -473,12 +473,12 @@ MonoBehaviour:
   skinRen: []
   col: {fileID: 0}
   FindRange: 20
-  AttackRange: 1.7
+  AttackRange: 2.2
   attackDelay: 6
   currentTime: 0
   ratio: 0
-  CurrentHp: 500
-  MaxHp: 500
+  CurrentHp: 1000
+  MaxHp: 1000
   StartPatrolTime: 5
   WaitTime: 0
   E_Speed: 1.2
@@ -495,10 +495,10 @@ MonoBehaviour:
   isDefence: 0
   isDie: 0
   DeBuffEffect: {fileID: 4084988120716083538}
-  Gold: 100
-  exp: 150
+  Gold: 500
+  exp: 2000
   def: 20
-  Damage: 20
+  Damage: 25
   Rock: {fileID: 5298590762127773683, guid: cad9f745870d9f448bf225d2a253d382, type: 3}
   rangeAttackRange: 15
   ThrowHand: {fileID: 739286403}
@@ -1082,6 +1082,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1077356410}
     m_Modifications:
+    - target: {fileID: 634481730073369692, guid: f95ff218d43884781aaecc6cf0456f25, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -100
+      objectReference: {fileID: 0}
     - target: {fileID: 2796718975934826438, guid: f95ff218d43884781aaecc6cf0456f25, type: 3}
       propertyPath: m_Name
       value: Canvas
@@ -1092,11 +1096,35 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2796718975934826438, guid: f95ff218d43884781aaecc6cf0456f25, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3107268600630833131, guid: f95ff218d43884781aaecc6cf0456f25, type: 3}
       propertyPath: m_Layer
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3419164806018761877, guid: f95ff218d43884781aaecc6cf0456f25, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 4154222232786353184, guid: f95ff218d43884781aaecc6cf0456f25, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4154222232786353184, guid: f95ff218d43884781aaecc6cf0456f25, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4154222232786353184, guid: f95ff218d43884781aaecc6cf0456f25, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 800
+      objectReference: {fileID: 0}
+    - target: {fileID: 4154222232786353184, guid: f95ff218d43884781aaecc6cf0456f25, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 4154222232786353184, guid: f95ff218d43884781aaecc6cf0456f25, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -500
       objectReference: {fileID: 0}
     - target: {fileID: 4411757472297828986, guid: f95ff218d43884781aaecc6cf0456f25, type: 3}
       propertyPath: m_Layer
@@ -1201,6 +1229,18 @@ PrefabInstance:
     - target: {fileID: 5775324075899687207, guid: f95ff218d43884781aaecc6cf0456f25, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6213044336820677657, guid: f95ff218d43884781aaecc6cf0456f25, type: 3}
+      propertyPath: m_FontData.m_MaxSize
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 6213044336820677657, guid: f95ff218d43884781aaecc6cf0456f25, type: 3}
+      propertyPath: m_FontData.m_MinSize
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6213044336820677657, guid: f95ff218d43884781aaecc6cf0456f25, type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 7985538639455688787, guid: f95ff218d43884781aaecc6cf0456f25, type: 3}
       propertyPath: m_Layer

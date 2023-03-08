@@ -103,10 +103,10 @@ public class Dragon : Boss
             }
             if (CurrentHp <= 0)
             {
-                Instantiate(Warp, transform.position, Quaternion.identity);
                 Warp.GetComponent<warpController>().SceneName = "Game";
-                Warp.GetComponent<warpController>().warpPos = new Vector3(60, 22.5f, 45);
-
+                Warp.GetComponent<warpController>().warpPos = new Vector3(11, 0, 0);
+                Instantiate(Warp, transform.position, Quaternion.identity);
+                target.GetComponent<playerController>().ClearBoss = true;
                 if (target.GetComponent<playerController>().quest == null)
                 {
                     StartCoroutine(EnemyRevive());

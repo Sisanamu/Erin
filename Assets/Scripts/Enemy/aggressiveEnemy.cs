@@ -5,6 +5,11 @@ using UnityEngine.UI;
 
 public class aggressiveEnemy : enemyController
 {
+    protected override void Update()
+    {
+        base.Update();
+        AimUi();
+    }
     public void FirstAttack()
     {
         if (target != null && (transform.position - target.transform.position).magnitude > AttackRange)

@@ -53,7 +53,6 @@ public class SaveNLoad : MonoBehaviour
         thePlayer = FindObjectOfType<playerController>();
         theInven = FindObjectOfType<Inventory>();
         theState = FindObjectOfType<GameManager>();
-        theQuest = FindObjectOfType<Quester>();
         theQuick = FindObjectOfType<QuickSlot>();
 
         saveDate.playerPos = thePlayer.transform.position;
@@ -74,7 +73,11 @@ public class SaveNLoad : MonoBehaviour
         saveDate.totalEXP = theState.totalEXP;
         saveDate.Gold = theState.Gold;
 
-        saveDate.Qid = theQuest.Qid;
+        if (FindObjectOfType<Quester>())
+        {
+            theQuest = FindObjectOfType<Quester>();
+            saveDate.Qid = theQuest.Qid;
+        }
 
         Slot[] slots = theInven.Getslots();
         for (int i = 0; i < slots.Length; i++)
@@ -122,7 +125,7 @@ public class SaveNLoad : MonoBehaviour
         Debug.Log(json);
         Debug.Log(File_Path);
         Debug.Log("저장 완료");
-        
+
 
     }
     public void LoadData()

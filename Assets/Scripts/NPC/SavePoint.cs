@@ -7,20 +7,16 @@ public class SavePoint : MonoBehaviour
 {
     Vector3 point;
     [SerializeField] protected GameObject canvas;
-    [SerializeField] protected string npcName;
-    [SerializeField] protected GameObject nameUI;
     [SerializeField] protected GameObject Save;
     [SerializeField] protected string meetSavePoint;
 
     void Start()
     {
         point = transform.position;
-        nameUI.GetComponent<Text>().text = npcName;
     }
 
     void Update()
     {
-        UIaim();
         transform.Rotate(new Vector3(0, 10, 0) * 5 * Time.deltaTime);
     }
 
@@ -35,10 +31,6 @@ public class SavePoint : MonoBehaviour
             other.GetComponent<playerController>().revivePoint = new Vector3(point.x + 1f, point.y, point.z + 1f);
             StartCoroutine(saveUI());
         }
-    }
-    void UIaim()
-    {
-        nameUI.transform.position = Camera.main.WorldToScreenPoint(transform.position + new Vector3(0, 2f, 0));
     }
     IEnumerator saveUI()
     {

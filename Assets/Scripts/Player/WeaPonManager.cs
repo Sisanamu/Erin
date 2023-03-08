@@ -85,13 +85,19 @@ public class WeaPonManager : MonoBehaviour
         if (Reinforce > 0)
         {
             SwordreinforceEffect[0].SetActive(true);
+            SwordreinforceEffect[1].SetActive(false);
+            SwordreinforceEffect[2].SetActive(false);
         }
-        if (Reinforce > 5)
+        if (Reinforce > 4)
         {
+            SwordreinforceEffect[0].SetActive(true);
             SwordreinforceEffect[1].SetActive(true);
+            SwordreinforceEffect[2].SetActive(false);
         }
         if (Reinforce > 9)
         {
+            SwordreinforceEffect[0].SetActive(true);
+            SwordreinforceEffect[1].SetActive(true);
             SwordreinforceEffect[2].SetActive(true);
         }
     }
@@ -108,13 +114,19 @@ public class WeaPonManager : MonoBehaviour
         if (Reinforce > 0)
         {
             ShieldreinforceEffect[0].SetActive(true);
+            ShieldreinforceEffect[1].SetActive(false);
+            ShieldreinforceEffect[2].SetActive(false);
         }
-        if (Reinforce > 5)
+        if (Reinforce > 4)
         {
+            ShieldreinforceEffect[0].SetActive(true);
             ShieldreinforceEffect[1].SetActive(true);
+            ShieldreinforceEffect[2].SetActive(false);
         }
         if (Reinforce > 9)
         {
+            ShieldreinforceEffect[0].SetActive(true);
+            ShieldreinforceEffect[1].SetActive(true);
             ShieldreinforceEffect[2].SetActive(true);
         }
     }

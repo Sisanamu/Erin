@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class Plus_Button : MonoBehaviour
 {
     Text UpStatus;
-
+    [SerializeField] private SaveNLoad theSave;
     Button Plus;
     public STATUS UPSTATUS;
 
@@ -18,11 +18,6 @@ public class Plus_Button : MonoBehaviour
         Plus.onClick.AddListener(UP_STATUS);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
     void UP_STATUS()
     {
         switch (UPSTATUS)
@@ -33,6 +28,7 @@ public class Plus_Button : MonoBehaviour
                     GameManager.Instance.StatusBonous--;
                     GameManager.Instance.MaxHp += 5;
                     GameManager.Instance.currentHp = GameManager.Instance.MaxHp;
+                    theSave.SaveData();
                 }
                 break;
             case STATUS.MaxSp:
@@ -41,6 +37,7 @@ public class Plus_Button : MonoBehaviour
                     GameManager.Instance.StatusBonous--;
                     GameManager.Instance.MaxSp++;
                     GameManager.Instance.currentSp = GameManager.Instance.MaxSp;
+                    theSave.SaveData();
                 }
                 break;
             case STATUS.STR:
@@ -48,6 +45,7 @@ public class Plus_Button : MonoBehaviour
                 {
                     GameManager.Instance.StatusBonous--;
                     GameManager.Instance.str++;
+                    theSave.SaveData();
                 }
                 break;
             case STATUS.DEX:
@@ -55,6 +53,7 @@ public class Plus_Button : MonoBehaviour
                 {
                     GameManager.Instance.StatusBonous--;
                     GameManager.Instance.dex += 1;
+                    theSave.SaveData();
                 }
                 break;
             case STATUS.DEF:
@@ -62,6 +61,7 @@ public class Plus_Button : MonoBehaviour
                 {
                     GameManager.Instance.StatusBonous--;
                     GameManager.Instance.def++;
+                    theSave.SaveData();
                 }
                 break;
         }

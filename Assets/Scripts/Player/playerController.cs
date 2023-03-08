@@ -40,6 +40,7 @@ public class playerController : MonoBehaviour
     public GameObject revivePlayer;
     public GameObject noHaveSavePoint;
     public GameObject QuickSlot;
+    public GameObject ClearBossWindow;
     public Vector3 revivePoint;
 
     public LayerMask EnemyMask;
@@ -62,6 +63,7 @@ public class playerController : MonoBehaviour
     public bool isBattle;
     public bool isDie;
     public bool dialogueOn;
+    public bool ClearBoss;
     public float currentEnemy;
     float currentNPC;
     public float enemyDist;
@@ -166,7 +168,8 @@ public class playerController : MonoBehaviour
         }
         else
             meetNpcButton.SetActive(false);
-        
+        if(ClearBoss)
+            StartCoroutine(ClearBossUI());
     }
 
     private void Idle()
@@ -479,5 +482,12 @@ public class playerController : MonoBehaviour
         JoyController.SetActive(false);
         yield return new WaitForSeconds(1f);
         JoyController.SetActive(true);
+    }
+    IEnumerator ClearBossUI()
+    {
+        ClearBossWindow.SetActive(true);
+        ClearBoss = false;
+        yield return new WaitForSeconds(2f);
+        ClearBossWindow.SetActive(false);
     }
 }

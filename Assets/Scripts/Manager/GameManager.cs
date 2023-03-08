@@ -86,8 +86,10 @@ public class GameManager : MonoBehaviour
             sQuitck[slotIndex].SetSlotCount(-1);
         }
         else
+        {
             currentSp = MaxSp;
-        sQuitck[slotIndex].SetSlotCount(-1);
+            sQuitck[slotIndex].SetSlotCount(-1);
+        }
     }
     public void IncreaseEXP(int _count)
     {

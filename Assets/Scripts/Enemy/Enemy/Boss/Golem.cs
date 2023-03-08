@@ -57,7 +57,9 @@ public class Golem : Boss
         base.OnTriggerEnter(other);
         if (CurrentHp <= 0)
         {
+            target.GetComponent<playerController>().ClearBoss = true;
             SpawnTime = Mathf.Infinity;
         }
     }
+
 }

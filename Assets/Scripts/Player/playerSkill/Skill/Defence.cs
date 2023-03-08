@@ -20,8 +20,9 @@ public class Defence : Skill_Controller
     public void Defence_On()
     {
         StartCool();
-        Player.GetComponent<playerController>().isDefence = true;
+        Player.GetComponent<playerController>().isDefence = !Player.GetComponent<playerController>().isDefence;
+        Player.GetComponent<playerController>().currentTime = 0;
         GameManager.Instance.currentSp -= needSP;
-        anim.SetBool("IsDefence", true);
+        anim.SetBool("IsDefence", Player.GetComponent<playerController>().isDefence);
     }
 }
