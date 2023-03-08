@@ -208,16 +208,18 @@ public class playerController : MonoBehaviour
             }
             if (Enemy != null && !Chasetarget && (transform.position - Enemy.transform.position).magnitude < SearchRange)
             {
+                if(!SkillIcon[0].GetComponent<Image>().enabled)
+                {
+                    Skill_Button_On();
+                }
                 TargettingImage.SetActive(true);
                 JoyController.SetActive(!Chasetarget);
-                Skill_Button_On();
                 chaseEnemyButton.SetActive(true);
                 anim.SetBool("State_Battle", true);
             }
             else if (Enemy != null && Chasetarget && (transform.position - Enemy.transform.position).magnitude > attackRange)
             {
                 JoyController.SetActive(false);
-                Skill_Button_On();
                 Rotate(Enemy);
                 Move();
             }
@@ -360,7 +362,7 @@ public class playerController : MonoBehaviour
     }
     public void lastPlaceRevive(int EXP)
     {
-        if (revivePoint.y != 0)
+        if (revivePoint.x != 0)
         {
             transform.position = revivePoint;
             GameManager.Instance.EXP -= EXP;

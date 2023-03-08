@@ -11,7 +11,8 @@ public class Charge : Skill_Controller
     public Sprite Icon;
     public string SoundName;
 
-    GameObject Enemy;
+    public GameObject Status;
+    public GameObject Enemy;
     float temp;
     float DeBuffTime;
 
@@ -30,18 +31,19 @@ public class Charge : Skill_Controller
     public void Charge_On()
     {
         StartCool();
-        SoundManager.instance.PlayEffects(SoundName);
         Enemy = Player.GetComponent<playerController>().Enemy;
+        SoundManager.instance.PlayEffects(SoundName);
         temp = Enemy.GetComponent<enemyController>().def;
         Enemy.GetComponent<enemyController>().def = 0;
         GameManager.Instance.currentSp -= needSP;
+        Status =  Enemy.gameObject.GetComponentInChildren<Canvas>().GetComponentInChildren<Enemy_Status_Effect>().gameObject;
+        Enemy_Status_Effect.instance.CreateDeBuff(type, DeBuffTime, Icon);
         StartCoroutine(returnDef());
     }
 
     IEnumerator returnDef()
     {
         Enemy.GetComponent<enemyController>().DeBuffEffect_On(true);
-        Enemy_Status_Effect.instance.CreateDeBuff(type, DeBuffTime, Icon);
         yield return new WaitForSeconds(DeBuffTime);
         Enemy.GetComponent<enemyController>().DeBuffEffect_On(false);
         if (Enemy != null)

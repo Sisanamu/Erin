@@ -12,7 +12,6 @@ public class Enemy_Status_Effect : MonoBehaviour
     {
         instance = this;
     }
-
     public void CreateDeBuff(Status_Effect type, float du, Sprite Icon)
     {
         go = Instantiate(BuffPrefabs, transform);
