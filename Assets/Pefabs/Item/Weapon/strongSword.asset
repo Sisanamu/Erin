@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30899ac69894d4c998db7813edd15515, type: 3}
+  m_Name: strongSword
+  m_EditorClassIdentifier: 
+  ItemName: "\uC388\uAC80"
+  itemtype: 0
+  ItemImage: {fileID: -1600825573, guid: 554dffa5ce81b4512b8f51ffc781995d, type: 3}
+  priceItem: 500
+  itemCoolTime: 0
+  weaponobject: {fileID: 5426684885162492598, guid: 8e583e9185af1be4e9dd6f501e6fe7d4, type: 3}
+  WeaponDamage: 10
+  def: 0
+  part: "\uB370\uBBF8\uC9C0"
+  recovery: 10
