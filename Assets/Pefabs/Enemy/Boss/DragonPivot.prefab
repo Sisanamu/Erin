@@ -202,7 +202,7 @@ MonoBehaviour:
   skinRen: []
   col: {fileID: 0}
   FindRange: 15
-  AttackRange: 3
+  AttackRange: 1.7
   attackDelay: 20
   currentTime: 0
   ratio: 0

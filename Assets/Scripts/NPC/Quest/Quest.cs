@@ -33,7 +33,7 @@ public class Quest
         Progress = false;
         questGoal.currentAmount = 0;
         GameManager.Instance.IncreaseEXP(RewardExp);
-        GameManager.Instance.Gold += RewardGold;
+        GameManager.Instance.ChangeGold(RewardGold);
         for (int i = 0; i < RewardItem.Count; i++)
         {
             Inventory.instance.AcquireItem(RewardItem[i], rewardItemCount, 0);

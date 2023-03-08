@@ -10,6 +10,7 @@ public class Quester : npcController
     public int Qid;
     public GameObject questWindow;
     public GameObject rewardWindow;
+    [SerializeField] private SaveNLoad theSave;
     [Header("Quest")]
     public Text titleText;
     public Text goalText;
@@ -101,6 +102,7 @@ public class Quester : npcController
         quests[Qid].Progress = true;
         Player.quest = quests[Qid];
         Player.isGetQuest = true;
+        theSave.SaveData();
     }
 
     public void refuseQuest()

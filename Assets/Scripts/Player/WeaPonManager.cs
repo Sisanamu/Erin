@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class WeaPonManager : MonoBehaviour
 {
-    [SerializeField]public MeshFilter RMfilter;
-    [SerializeField]public MeshFilter LMfilter;
+    [SerializeField] public MeshFilter RMfilter;
+    [SerializeField] public MeshFilter LMfilter;
+    public Item SwordItem;
+    public int SwordReinforce;
+    public Item ShieldItem;
+    public int ShieldReinforce;
     public GameObject[] SwordreinforceEffect;
     public GameObject[] ShieldreinforceEffect;
 
@@ -14,6 +18,38 @@ public class WeaPonManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
+    }
+    private void Update()
+    {
+        if (SwordSlot.instance.item != null)
+        {
+            SwordItem = SwordSlot.instance.item;
+            SwordReinforce = SwordSlot.instance.Reinforce;
+            changesword(SwordItem, SwordReinforce);
+            SwordreinForceEffectOn(SwordReinforce);
+        }
+        else
+        {
+            SwordItem = null;
+            SwordReinforce = 0;
+            RMfilter.mesh = null;
+            SwordreinForceEffectOn(SwordReinforce);
+        }
+        if (ShieldSlot.instance.item != null)
+        {
+            ShieldItem = ShieldSlot.instance.item;
+            ShieldReinforce = ShieldSlot.instance.Reinforce;
+            changeshield(ShieldItem, ShieldReinforce);
+            ShieldreinForceEffectOn(ShieldReinforce);
+        }
+        else
+        {
+            LMfilter.mesh = null;
+            ShieldReinforce = 0;
+            ShieldItem = null;
+            ShieldreinForceEffectOn(ShieldReinforce);
+        }
+        
     }
 
     public void changesword(Item sword, int Reinforce)
@@ -24,8 +60,6 @@ public class WeaPonManager : MonoBehaviour
     public void unEquipSword(Item sword, int Reinforce)
     {
         RMfilter.mesh = null;
-        Reinforce = 0;
-        GameManager.Instance.WeaponDamage = 0;
     }
     public void changeshield(Item shield, int Reinfocre)
     {
@@ -41,7 +75,7 @@ public class WeaPonManager : MonoBehaviour
 
     public void SwordreinForceEffectOn(int Reinforce)
     {
-        if(Reinforce <= 0)
+        if (Reinforce <= 0)
         {
             SwordreinforceEffect[0].SetActive(false);
             SwordreinforceEffect[1].SetActive(false);
@@ -61,10 +95,10 @@ public class WeaPonManager : MonoBehaviour
             SwordreinforceEffect[2].SetActive(true);
         }
     }
-    
+
     public void ShieldreinForceEffectOn(int Reinforce)
     {
-        if(Reinforce <= 0)
+        if (Reinforce <= 0)
         {
             ShieldreinforceEffect[0].SetActive(false);
             ShieldreinforceEffect[1].SetActive(false);

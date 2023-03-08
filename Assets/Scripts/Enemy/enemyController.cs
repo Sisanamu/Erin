@@ -368,7 +368,7 @@ public class enemyController : MonoBehaviour
         Destroy(Enemy_Status_Effect.instance.go);
         targets.Clear();
         GameManager.Instance.IncreaseEXP(exp);
-        GameManager.Instance.Gold += Gold + UnityEngine.Random.Range(1, 5);
+        GameManager.Instance.ChangeGold(Gold + UnityEngine.Random.Range(1, 5));
         DeBuffEffect.SetActive(false);
         CanSearch = false;
         isWalk = false;

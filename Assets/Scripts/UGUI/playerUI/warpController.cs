@@ -15,8 +15,6 @@ public class warpController : MonoBehaviour
             SoundManager.instance.PlayEffects("Warp");
             other.transform.position = warpPos;
             loadingSceneManager.LoadScene(SceneName);
-            
-            gameObject.SetActive(false);
         }
     }
 }

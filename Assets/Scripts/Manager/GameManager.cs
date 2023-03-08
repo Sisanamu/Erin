@@ -30,6 +30,7 @@ public class GameManager : MonoBehaviour
     public string soundName;
     public Slot_QuickSlot[] sQuitck;
     public int slotIndex;
+    [SerializeField] SaveNLoad theSave;
     #region SingleTon
     private static GameManager instance = null;
     public static GameManager Instance
@@ -91,5 +92,10 @@ public class GameManager : MonoBehaviour
     public void IncreaseEXP(int _count)
     {
         EXP += _count;
+    }
+    public void ChangeGold(int _count)
+    {
+        Gold += _count;
+        theSave.SaveData();
     }
 }

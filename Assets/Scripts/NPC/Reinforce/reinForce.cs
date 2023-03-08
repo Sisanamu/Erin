@@ -60,7 +60,7 @@ public class reinForce : MonoBehaviour
         if (reinForceGold() < GameManager.Instance.Gold)
         {
             StartCoroutine(FadeIn());
-            GameManager.Instance.Gold -= reinForceGold();
+            GameManager.Instance.ChangeGold(-reinForceGold());
             int Rnd = Random.Range(0, 99);
             if (Rnd < Percentage)
             {

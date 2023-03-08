@@ -17,24 +17,27 @@ public class SwordSlot : Slot, IPointerClickHandler
     {
         if (item != null)
         {
-            WeaPonManager.instance.changesword(item, Reinforce);
             slotImage.SetActive(false);
         }
         else
         {
             slotImage.SetActive(true);
-            WeaPonManager.instance.unEquipSword(item, 0);
         }
-
     }
 
     public override void OnPointerClick(PointerEventData eventData)
     {
         if (item != null)
         {
-            Inventory.instance.AcquireItem(item, 1, Reinforce);
-            WeaPonManager.instance.unEquipSword(item, 0);
-            ClearSlot();
+            if (WeaPonManager.instance.RMfilter != null)
+            {
+                Inventory.instance.AcquireItem(item, 1, Reinforce);
+                ClearSlot();
+            }
         }
+    }
+    public override void OnDrop(PointerEventData eventData)
+    {
+        base.OnDrop(eventData);
     }
 }

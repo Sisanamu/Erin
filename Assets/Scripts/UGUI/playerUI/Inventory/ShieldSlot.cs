@@ -17,13 +17,14 @@ public class ShieldSlot : Slot
     {
         if (item != null)
         {
-            WeaPonManager.instance.changeshield(item, Reinforce);
-            slotImage.SetActive(false);
+            if (WeaPonManager.instance.LMfilter != null)
+            {
+                slotImage.SetActive(false);
+            }
         }
         else
         {
             slotImage.SetActive(true);
-            WeaPonManager.instance.unEquipShield(item, 0);
         }
 
     }
@@ -32,9 +33,11 @@ public class ShieldSlot : Slot
     {
         if (item != null)
         {
-            Inventory.instance.AcquireItem(item, 1, Reinforce);
-            WeaPonManager.instance.unEquipShield(item, 0);
-            ClearSlot();
+            if (WeaPonManager.instance.LMfilter != null)
+            {
+                Inventory.instance.AcquireItem(item, 1, Reinforce);
+                ClearSlot();
+            }
         }
     }
     public override void OnDrop(PointerEventData eventData)

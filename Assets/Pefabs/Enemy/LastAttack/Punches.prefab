@@ -2914,6 +2914,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a6ae56135d98840b2b17999129f7f443, type: 2}
   - {fileID: 11400000, guid: cfe566bcb27474deab7b21877ff23e9e, type: 2}
   - {fileID: 11400000, guid: e5f4d4e50a95b47f2b38d189b3654c09, type: 2}
+  WaitPos: {x: 0, y: 0, z: 0}
   TargettingImage: {fileID: 3368119665453128640}
   Enemy_HP: {fileID: 5467288693307762484}
   Monster_Name: {fileID: 6024655552887838770}
@@ -2937,7 +2938,7 @@ MonoBehaviour:
   skinRen: []
   col: {fileID: 0}
   FindRange: 7
-  AttackRange: 2
+  AttackRange: 1.7
   attackDelay: 5
   currentTime: 0
   ratio: 0

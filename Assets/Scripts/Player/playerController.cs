@@ -161,11 +161,12 @@ public class playerController : MonoBehaviour
         if (NPC != null)
         {
             meetNpcButton.SetActive(true);
-            if(dialogueOn)
+            if (dialogueOn)
                 Rotate(NPC.gameObject);
         }
         else
             meetNpcButton.SetActive(false);
+        
     }
 
     private void Idle()
@@ -245,7 +246,7 @@ public class playerController : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         Enemys.Clear();
         enemylist = Physics.OverlapSphere(transform.position, SearchRange, EnemyMask);
-        
+
         for (int i = 0; i < enemylist.Length; i++)
         {
             Transform Enemytrans = enemylist[i].transform;
@@ -266,7 +267,7 @@ public class playerController : MonoBehaviour
                     Enemy = Enemys[i];
                     currentEnemy = enemyDist;
                 }
-                
+
                 TargettingImage = Enemy.transform.Find("Canvas").transform.gameObject;
             }
         }
