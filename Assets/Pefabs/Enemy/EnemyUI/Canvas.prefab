@@ -257,6 +257,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BuffPrefabs: {fileID: 4569187001064300739, guid: b7143145f619e48eb82bc56430dceadc, type: 3}
   go: {fileID: 0}
+  enemyCanbas: {fileID: 0}
 --- !u!1 &5655813803864642335
 GameObject:
   m_ObjectHideFlags: 0

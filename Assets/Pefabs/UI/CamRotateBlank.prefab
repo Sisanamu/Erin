@@ -89,7 +89,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89ee0fb07ddb948778ecdf9e54db4b9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  notPlayer:
+    serializedVersion: 2
+    m_Bits: 0
   CamPivot: {fileID: 0}
+  Cam: {fileID: 0}
   Player: {fileID: 0}
   RotateSpeed: 5
   xAngle: 0

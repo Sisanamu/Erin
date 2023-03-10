@@ -11,7 +11,7 @@ public class Charge : Skill_Controller
     public Sprite Icon;
     public string SoundName;
 
-    public GameObject Status;
+    public Enemy_Status_Effect Status;
     public GameObject Enemy;
     float temp;
     float DeBuffTime;
@@ -36,8 +36,8 @@ public class Charge : Skill_Controller
         temp = Enemy.GetComponent<enemyController>().def;
         Enemy.GetComponent<enemyController>().def = 0;
         GameManager.Instance.currentSp -= needSP;
-        Status =  Enemy.gameObject.GetComponentInChildren<Canvas>().GetComponentInChildren<Enemy_Status_Effect>().gameObject;
-        Enemy_Status_Effect.instance.CreateDeBuff(type, DeBuffTime, Icon);
+        Status = Enemy.gameObject.GetComponentInChildren<Canvas>().GetComponentInChildren<Enemy_Status_Effect>();
+        Status.CreateDeBuff(type, DeBuffTime, Icon);
         StartCoroutine(returnDef());
     }
 

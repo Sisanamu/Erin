@@ -170,8 +170,13 @@ MonoBehaviour:
   item: {fileID: 0}
   itemCount: 0
   itemImage: {fileID: 6471919496908607497}
+  itemCool: 0
   Text_Count: {fileID: 6471919498392825968}
   go_CountImage: {fileID: 7895277871910754761}
+  coolTimeImage: {fileID: 0}
+  coolTime: 0
+  canUseItem: 0
+  slotIndex: 0
 --- !u!1 &6471919498392825974
 GameObject:
   m_ObjectHideFlags: 0

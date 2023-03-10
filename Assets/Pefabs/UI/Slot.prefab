@@ -91,11 +91,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a50bb960ab0a431095a6c33a14b4185, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SlotName: 
   item: {fileID: 0}
   itemCount: 0
+  Reinforce: 0
+  IED: {fileID: 0}
   itemImage: {fileID: 260425597402329615}
+  noHaveSpace: {fileID: 0}
   Text_Count: {fileID: 260425596186448502}
   go_CountImage: {fileID: 4025231435261688783}
+  reinForceText: {fileID: 0}
 --- !u!1 &260425596186448496
 GameObject:
   m_ObjectHideFlags: 0

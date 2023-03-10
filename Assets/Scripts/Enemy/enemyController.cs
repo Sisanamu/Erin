@@ -115,21 +115,17 @@ public class enemyController : MonoBehaviour
     }
     public virtual void Attack()
     {
-        if (targets.Count == 0)
+        if (target == null)
         {
-            isBattle = false;
-            anim.SetBool("IsBattle", isBattle);
             Monster_Name.GetComponent<Text>().color = Color.white;
-            target = null;
-            E_STATE = creature_STATE.FIND;
+            E_STATE = creature_STATE.IDLE;
         }
-        if (target != null && (transform.position - target.transform.position).magnitude > FindRange)
+        if (target != null && (transform.position - target.transform.position).magnitude > FindRange+1f)
         {
             isBattle = false;
             anim.SetBool("IsBattle", isBattle);
             Monster_Name.GetComponent<Text>().color = Color.white;
-            E_STATE = creature_STATE.FIND;
-            anim.SetBool("IsWalk", false);
+            targets.Clear();
             target = null;
         }
         if (target != null &&
@@ -156,12 +152,16 @@ public class enemyController : MonoBehaviour
     }
     public virtual void Idle()
     {
+        if(Canvas.activeSelf)
+        {
+            Destroy(Enemy_Status_Effect.instance.go);
+            Canvas.SetActive(false);
+        }
         anim.SetBool("IsBattle", false);
         if (CanDefence)
         {
             anim.SetBool("IsDefence", false);
         }
-        Canvas.SetActive(false);
         findTarget();
         isWalk = false;
         CanSearch = true;
@@ -187,6 +187,7 @@ public class enemyController : MonoBehaviour
         }
         if (targets.Count == 0 || target.GetComponent<playerController>().isDie)
         {
+            isAttack = false;
             E_STATE = creature_STATE.IDLE;
             Patrol();
         }

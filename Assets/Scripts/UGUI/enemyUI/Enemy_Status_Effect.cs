@@ -7,6 +7,7 @@ public class Enemy_Status_Effect : MonoBehaviour
     public static Enemy_Status_Effect instance;
     public GameObject BuffPrefabs;
     public GameObject go;
+    public GameObject enemyCanbas;
 
     private void Start()
     {

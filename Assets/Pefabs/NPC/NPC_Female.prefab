@@ -696,7 +696,7 @@ MonoBehaviour:
   item: {fileID: 11400000, guid: a6ae56135d98840b2b17999129f7f443, type: 2}
   itemImage: {fileID: 6086031014055664704}
   itemText: {fileID: 7165881979794556956}
-  imtePrice: {fileID: 3319728684501578755}
+  itemPrice: {fileID: 0}
   lowGold: {fileID: 7503987102020959142}
   soundName: []
 --- !u!1 &746892002643455696
@@ -1470,7 +1470,7 @@ MonoBehaviour:
   item: {fileID: 11400000, guid: 5c0aec805014f4b3899921d16c9d42e0, type: 2}
   itemImage: {fileID: 2932808366542287325}
   itemText: {fileID: 4695940109961734228}
-  imtePrice: {fileID: 644896207527310115}
+  itemPrice: {fileID: 0}
   lowGold: {fileID: 7503987102020959142}
   soundName: []
 --- !u!1 &1691587506307743352
@@ -2916,7 +2916,7 @@ MonoBehaviour:
   item: {fileID: 11400000, guid: e5f4d4e50a95b47f2b38d189b3654c09, type: 2}
   itemImage: {fileID: 1962076425484383769}
   itemText: {fileID: 6649971934494290115}
-  imtePrice: {fileID: 7596763520213499921}
+  itemPrice: {fileID: 0}
   lowGold: {fileID: 7503987102020959142}
   soundName: []
 --- !u!1 &3372568311966519808
@@ -4401,7 +4401,7 @@ MonoBehaviour:
   item: {fileID: 11400000, guid: a25b0f025d8ed469199743b1a8496175, type: 2}
   itemImage: {fileID: 958661321817506293}
   itemText: {fileID: 7432278346357591716}
-  imtePrice: {fileID: 6643650172490332528}
+  itemPrice: {fileID: 0}
   lowGold: {fileID: 7503987102020959142}
   soundName: []
 --- !u!1 &5704358627061786020
@@ -6055,6 +6055,7 @@ MonoBehaviour:
   nameTag: {fileID: 6937432160343738429}
   anim: {fileID: 0}
   isWalk: 1
+  dialogueOn: 0
   dialogue: {fileID: 6878834017676533875}
   Canvas: {fileID: 6878834016890222436}
   waitPoint: {x: 0, y: -0.09, z: 0}
@@ -6065,7 +6066,8 @@ MonoBehaviour:
   WaitTime: 0
   Waitpos: 2
   nameUI: {fileID: 0}
-  soundName: 
+  Player: {fileID: 0}
+  soundName: []
   Shop: {fileID: 0}
   reinForce: {fileID: 0}
   Inventory: {fileID: 0}
@@ -7112,7 +7114,7 @@ MonoBehaviour:
   item: {fileID: 11400000, guid: cfe566bcb27474deab7b21877ff23e9e, type: 2}
   itemImage: {fileID: 839424909612148056}
   itemText: {fileID: 5752958195404174002}
-  imtePrice: {fileID: 3192811078858209585}
+  itemPrice: {fileID: 0}
   lowGold: {fileID: 7503987102020959142}
   soundName: []
 --- !u!1 &7838340544751806700
@@ -7242,7 +7244,7 @@ MonoBehaviour:
   item: {fileID: 11400000, guid: ef4b8868ac9274be5802634d027a2871, type: 2}
   itemImage: {fileID: 1564765821911034802}
   itemText: {fileID: 8031647073198502879}
-  imtePrice: {fileID: 4048181063861788820}
+  itemPrice: {fileID: 0}
   lowGold: {fileID: 7503987102020959142}
   soundName: []
 --- !u!1 &8034367796639805920

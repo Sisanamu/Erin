@@ -19,9 +19,17 @@ public class Rock : MonoBehaviour
 
     private void Update()
     {
-        Vector3 _dir = (target.transform.position - transform.position).normalized;
-        transform.position += _dir * R_Speed * Time.deltaTime;
-        transform.Rotate(new Vector3(50, 0, 0) * 40 * Time.deltaTime);
+        if (target != null)
+        {
+            Vector3 _dir = (target.transform.position - transform.position).normalized;
+            transform.position += _dir * R_Speed * Time.deltaTime;
+            transform.Rotate(new Vector3(50, 0, 0) * 40 * Time.deltaTime);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+
     }
     private void OnTriggerEnter(Collider other)
     {

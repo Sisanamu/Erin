@@ -1233,6 +1233,7 @@ MonoBehaviour:
   slotCount: 0
   Quickslot_Parent: {fileID: 7857250393712067675}
   quickslots: []
+  items: []
 --- !u!1 &7857250393726696868
 GameObject:
   m_ObjectHideFlags: 0
@@ -2417,6 +2418,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ad92b074d358403591837ba7ddabf56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  theSave: {fileID: 0}
   UPSTATUS: 4
 --- !u!1 &7857250393860690907
 GameObject:
@@ -2885,6 +2887,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 0}
+  Enemy: {fileID: 0}
 --- !u!1 &7857250394002717866
 GameObject:
   m_ObjectHideFlags: 0
@@ -4090,6 +4093,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ad92b074d358403591837ba7ddabf56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  theSave: {fileID: 0}
   UPSTATUS: 2
 --- !u!1 &7857250394202100933
 GameObject:
@@ -4451,7 +4455,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  _Reinforce: 0
+  items: []
 --- !u!1 &7857250394257607455
 GameObject:
   m_ObjectHideFlags: 0
@@ -5541,6 +5545,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 0}
+  Enemy: {fileID: 0}
 --- !u!1 &7857250394357058251
 GameObject:
   m_ObjectHideFlags: 0
@@ -5865,6 +5870,8 @@ MonoBehaviour:
   type: 0
   Icon: {fileID: 21300000, guid: 1069d22365f2e4bd4858f0a871911ef0, type: 3}
   SoundName: 
+  Status: {fileID: 0}
+  Enemy: {fileID: 0}
 --- !u!1 &7857250394357058253
 GameObject:
   m_ObjectHideFlags: 0
@@ -6718,6 +6725,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ad92b074d358403591837ba7ddabf56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  theSave: {fileID: 0}
   UPSTATUS: 5
 --- !u!1 &7857250394469626206
 GameObject:
@@ -7009,6 +7017,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ad92b074d358403591837ba7ddabf56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  theSave: {fileID: 0}
   UPSTATUS: 3
 --- !u!1 &7857250394519244807
 GameObject:
@@ -10056,6 +10065,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20574fc89dee643ef861b2cee12240bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  thesave: {fileID: 0}
   HP: {fileID: 7857250395389515557}
   SP: {fileID: 7857250395221584222}
   EXP: {fileID: 7857250395637705636}
@@ -10261,6 +10271,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20574fc89dee643ef861b2cee12240bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  thesave: {fileID: 0}
   HP: {fileID: 7857250395498485460}
   SP: {fileID: 7857250395443484644}
   EXP: {fileID: 7857250394865597001}
@@ -14523,6 +14534,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ad92b074d358403591837ba7ddabf56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  theSave: {fileID: 0}
   UPSTATUS: 6
 --- !u!1 &7857250395536592405
 GameObject:

@@ -1523,6 +1523,7 @@ MonoBehaviour:
   nameTag: {fileID: 1933461548202537337}
   anim: {fileID: 0}
   isWalk: 0
+  dialogueOn: 0
   dialogue: {fileID: 8724211447923262499}
   Canvas: {fileID: 698203679475161256}
   waitPoint: {x: 0, y: 0, z: 0}
@@ -1533,11 +1534,13 @@ MonoBehaviour:
   WaitTime: 0
   Waitpos: 2
   nameUI: {fileID: 0}
+  Player: {fileID: 0}
+  soundName: []
   quests: []
   Qid: 0
-  Player: {fileID: 0}
   questWindow: {fileID: 5528504267786513998}
   rewardWindow: {fileID: 0}
+  theSave: {fileID: 0}
   titleText: {fileID: 1141830840111578115}
   goalText: {fileID: 517829715263815170}
   contents: {fileID: 7528500315350577718}
