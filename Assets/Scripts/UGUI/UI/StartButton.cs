@@ -7,7 +7,9 @@ using System.IO;
 
 public class StartButton : MonoBehaviour
 {
-    private SaveNLoad theSaveNLoad;
+    public string sceneName;
+    public GameObject noSaveData;
+    public SaveNLoad theSaveNLoad;
     #region  SingleTon
     private static StartButton instance;
     public static StartButton Instance
@@ -29,14 +31,24 @@ public class StartButton : MonoBehaviour
         else
             Destroy(gameObject);
     }
-#endregion
+    #endregion
+    private void Update()
+    {
+        theSaveNLoad = FindObjectOfType<SaveNLoad>();
+    }
     public void StartGame(string SceneName)
     {
         loadingSceneManager.LoadScene(SceneName);
+        gameObject.SetActive(false);
     }
-    public void LoadGame(string SceneName)
+    public void LoadGame()
     {
-        StartCoroutine(LoadCoroutine(SceneName));
+        theSaveNLoad.LoadData();
+        sceneName = theSaveNLoad.getSceneName;
+        if (File.Exists(theSaveNLoad.File_Path))
+            StartCoroutine(LoadCoroutine(sceneName));
+        else
+            StartCoroutine(NotHaveSave());
     }
     IEnumerator LoadCoroutine(string SceneName)
     {
@@ -48,5 +60,11 @@ public class StartButton : MonoBehaviour
         theSaveNLoad = FindObjectOfType<SaveNLoad>();
         theSaveNLoad.LoadData();
         gameObject.SetActive(false);
+    }
+    IEnumerator NotHaveSave()
+    {
+        noSaveData.SetActive(true);
+        yield return new WaitForSeconds(1f);
+        noSaveData.SetActive(false);
     }
 }

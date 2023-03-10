@@ -13,7 +13,7 @@ public class JoyStick : MonoBehaviour
 
     Image Blank = null;
     RectTransform rectTransforn;
-    Vector3 StartPos = Vector3.zero;
+    public Vector3 StartPos = Vector3.zero;
     Vector3 direction = Vector3.zero;
 
     public GameObject JoyBG;

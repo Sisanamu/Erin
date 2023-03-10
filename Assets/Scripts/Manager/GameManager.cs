@@ -55,6 +55,13 @@ public class GameManager : MonoBehaviour
     }
     #endregion
 
+    private void Update()
+    {
+        if (GameManager.Instance.currentSp <= 0)
+        {
+            GameManager.Instance.currentSp = 0;
+        }
+    }
     public int GetDamage(float EnemyDEF)
     {
         float Rnd = Random.Range(0.8f + (dex / 1000), 1.2f);

@@ -12,6 +12,7 @@ public class warpController : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            loadingSceneManager.isdone = false;
             SoundManager.instance.PlayEffects("Warp");
             other.transform.position = warpPos;
             loadingSceneManager.LoadScene(SceneName);

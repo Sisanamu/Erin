@@ -12,6 +12,7 @@ public class loadingSceneManager : MonoBehaviour
     [SerializeField] protected GameObject loading;
     private void Start()
     {
+        isdone = false;
         StartCoroutine(LoadScene());
     }
 
@@ -24,27 +25,24 @@ public class loadingSceneManager : MonoBehaviour
     IEnumerator LoadScene()
     {
         AsyncOperation AO = SceneManager.LoadSceneAsync(nextScene);
-        isdone = false;
         AO.allowSceneActivation = false;
 
         float timer = 0.0f;
+        loadingBar.fillAmount = 0f;
         while (!AO.isDone)
         {
-            timer += Time.deltaTime;
-            if (AO.progress < 0.9f)
+            timer += Time.deltaTime * 2f;
+            loadingBar.fillAmount = Mathf.Lerp(loadingBar.fillAmount, 1f, timer);
+            if(loadingBar.fillAmount <= 1f)
             {
-                loadingBar.fillAmount = Mathf.Lerp(loadingBar.fillAmount, AO.progress, timer);
-                if (loadingBar.fillAmount >= AO.progress) { timer = 0f; }
+                yield return new WaitForSeconds(0.1f);
             }
-            else
+            if(loadingBar.fillAmount == 1f)
             {
-                loadingBar.fillAmount = Mathf.Lerp(loadingBar.fillAmount, 1f, timer);
-                if (loadingBar.fillAmount == 1.0f)
-                {
-                    AO.allowSceneActivation = true;
-                    yield break;
-
-                }
+                isdone = true;
+                AO.allowSceneActivation = true;
+                Debug.Log(loadingSceneManager.isdone);
+                yield break;
             }
         }
     }

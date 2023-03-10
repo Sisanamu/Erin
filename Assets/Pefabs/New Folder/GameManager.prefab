@@ -1,0 +1,85 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7462962499001843713
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7462962499001843715}
+  - component: {fileID: 7462962499001843714}
+  - component: {fileID: 1776966809472491233}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7462962499001843715
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7462962499001843713}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7462962499001843714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7462962499001843713}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07ed1d54bf4a8734686686ed654339ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UIWaitTime: 1
+  Level: 1
+  currentHp: 150
+  MaxHp: 150
+  currentSp: 10
+  MaxSp: 10
+  str: 10
+  dex: 10
+  def: 0
+  P_speed: 15
+  StatusBonous: 0
+  Damage: 0
+  WeaponDamage: 0
+  EXP: 0
+  totalEXP: 100
+  Gold: 0
+  PowerTime: 5
+  ChargeTime: 5
+  soundName: Heal
+  sQuitck:
+  - {fileID: 0}
+  - {fileID: 0}
+  slotIndex: 0
+  theSave: {fileID: 1776966809472491233}
+--- !u!114 &1776966809472491233
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7462962499001843713}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d2c89997dc0849fd9ca481ad131f033, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  File_Path: 
+  getSceneName: 

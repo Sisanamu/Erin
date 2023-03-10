@@ -993,6 +993,7 @@ MonoBehaviour:
   Player: {fileID: 0}
   anim: {fileID: 0}
   isDrag: 0
+  StartPos: {x: 0, y: 0, z: 0}
   JoyBG: {fileID: 3212028213926431608}
   Joy: {fileID: 3212028212596497487}
 --- !u!114 &3212028212230896191
@@ -2684,6 +2685,7 @@ RectTransform:
   m_Children:
   - {fileID: 3212028213846480840}
   - {fileID: 3212028213486739619}
+  - {fileID: 3212028212541445904}
   - {fileID: 2775120960874939998}
   m_Father: {fileID: 7857346925902465988}
   m_RootOrder: -1
@@ -5720,19 +5722,19 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3212028212541445905}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3212028213858813600}
   - {fileID: 3212028212934496806}
-  m_Father: {fileID: 3212028213218380680}
+  m_Father: {fileID: 3212028212027784854}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -200, y: -200}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 180, y: 75}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3212028212541445910
@@ -8868,8 +8870,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 1000
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 39f56b154479042478a37522a51c3a09, type: 2}
-  m_sharedMaterial: {fileID: -4351828400936434242, guid: 39f56b154479042478a37522a51c3a09, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -11633,7 +11635,6 @@ RectTransform:
   - {fileID: 3212028213593933421}
   - {fileID: 3212028212558584706}
   - {fileID: 3212028213687475303}
-  - {fileID: 3212028212541445904}
   - {fileID: 3212028213262659061}
   m_Father: {fileID: 3212028213281436264}
   m_RootOrder: -1

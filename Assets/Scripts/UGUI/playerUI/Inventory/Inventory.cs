@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class Inventory : MonoBehaviour
 {
@@ -10,7 +11,8 @@ public class Inventory : MonoBehaviour
 
     [SerializeField]
     public GameObject slotParent;
-
+    [SerializeField]
+    public TextMeshProUGUI goldText;
     public Slot[] slots;
 
     public Slot[] Getslots() { return slots; }
@@ -33,6 +35,13 @@ public class Inventory : MonoBehaviour
         slots = slotParent.GetComponentsInChildren<Slot>();
         slotParent.SetActive(true);
         slotParent.SetActive(false);
+    }
+    void Update()
+    {
+        if(slotParent.activeSelf)
+        {
+            goldText.text = GameManager.Instance.Gold.ToString();
+        }
     }
     public void AcquireItem(Item _item, int _Count = 1, int _Reinforce = 0)
     {

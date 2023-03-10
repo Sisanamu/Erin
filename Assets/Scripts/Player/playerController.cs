@@ -31,7 +31,7 @@ public class playerController : MonoBehaviour
     public GameObject HitBox;
     public GameObject chaseEnemyButton;
     public GameObject meetNpcButton;
-    public GameObject JoyController;
+    public JoyStick JoyController;
     public Image CamController;
     public GameObject[] SkillIcon;
     public GameObject[] SkillBackGround;
@@ -41,6 +41,7 @@ public class playerController : MonoBehaviour
     public GameObject noHaveSavePoint;
     public GameObject QuickSlot;
     public GameObject ClearBossWindow;
+    public GameObject Canvas;
     public Vector3 revivePoint;
 
     public LayerMask EnemyMask;
@@ -69,6 +70,7 @@ public class playerController : MonoBehaviour
     public float enemyDist;
     float npcDist;
     int temp;
+    public string sceneName;
 
     [Header("Skill")]
     public bool isDefence;
@@ -107,12 +109,12 @@ public class playerController : MonoBehaviour
         anim = GetComponent<Animator>();
         rgd = GetComponent<Rigidbody>();
         quest = null;
-        anim.SetBool("Diestay", false);
     }
 
     void Update()
     {
         currentTime += Time.deltaTime;
+        sceneName = SceneManager.GetActiveScene().name;
         if (isBattle)
         {
             StopCoroutine(FindTarget());
@@ -139,13 +141,8 @@ public class playerController : MonoBehaviour
             isAttack = false;
             currentTime = 0;
         }
-        if (GameManager.Instance.currentSp <= 0)
-        {
-            GameManager.Instance.currentSp = 0;
-        }
         if (GameManager.Instance.currentHp <= 0)
             P_STATE = creature_STATE.Death;
-
         if (quest != null)
         {
             if (quest.Progress)
@@ -170,6 +167,11 @@ public class playerController : MonoBehaviour
             meetNpcButton.SetActive(false);
         if(ClearBoss)
             StartCoroutine(ClearBossUI());
+        if(loadingSceneManager.isdone)
+        {
+            Canvas.SetActive(true);
+            rgd.isKinematic = false;
+        }
     }
 
     private void Idle()
@@ -213,13 +215,13 @@ public class playerController : MonoBehaviour
                     Skill_Button_On();
                 }
                 TargettingImage.SetActive(true);
-                JoyController.SetActive(!Chasetarget);
+                JoyController.gameObject.SetActive(!Chasetarget);
                 chaseEnemyButton.SetActive(true);
                 anim.SetBool("State_Battle", true);
             }
             else if (Enemy != null && Chasetarget && (transform.position - Enemy.transform.position).magnitude > attackRange)
             {
-                JoyController.SetActive(false);
+                JoyController.gameObject.SetActive(false);
                 Rotate(Enemy);
                 Move();
             }
@@ -403,8 +405,9 @@ public class playerController : MonoBehaviour
     {
         if (other.CompareTag("Warp"))
         {
-            StartCoroutine(WarpJoy());
+            StartCoroutine(LoadandActive());
             revivePoint = other.GetComponent<warpController>().warpPos;
+            SceneName = other.GetComponent<warpController>().SceneName;
             anim.SetBool("IsMove", false);
         }
 
@@ -478,18 +481,20 @@ public class playerController : MonoBehaviour
         yield return new WaitForSeconds(GameManager.Instance.UIWaitTime);
         noHaveSavePoint.SetActive(false);
     }
-    IEnumerator WarpJoy()
-    {
-        JoyController.GetComponent<JoyStick>().isDrag = false;
-        JoyController.SetActive(false);
-        yield return new WaitForSeconds(1f);
-        JoyController.SetActive(true);
-    }
     IEnumerator ClearBossUI()
     {
         ClearBossWindow.SetActive(true);
         ClearBoss = false;
         yield return new WaitForSeconds(2f);
         ClearBossWindow.SetActive(false);
+    }
+    IEnumerator LoadandActive()
+    {
+        JoyController.StartPos = Vector3.zero;
+        JoyController.isDrag = false;
+        JoyController.JoyBG.SetActive(false);
+        Canvas.SetActive(false);
+        rgd.isKinematic = true;
+        yield return null;
     }
 }

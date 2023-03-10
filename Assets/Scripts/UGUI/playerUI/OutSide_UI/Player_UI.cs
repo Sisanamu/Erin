@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
 public class Player_UI : MonoBehaviour
 {
@@ -14,7 +13,6 @@ public class Player_UI : MonoBehaviour
     public GameObject LevelUpEf;
     public Text Level;
     public GameObject Joystick;
-    public TextMeshProUGUI goldText;
 
     public float ratio_HP;
     public float ratio_SP;
@@ -26,7 +24,6 @@ public class Player_UI : MonoBehaviour
         UI_SP();
         UI_EXP();
         UI_Level();
-        UI_Gold();
     }
 
     void UI_HP()
@@ -59,10 +56,6 @@ public class Player_UI : MonoBehaviour
     void UI_Level()
     {
         Level.text = GameManager.Instance.Level.ToString();
-    }
-    void UI_Gold()
-    {
-        goldText.text = GameManager.Instance.Gold.ToString();
     }
     void LevelUP()
     {
