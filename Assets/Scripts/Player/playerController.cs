@@ -215,8 +215,8 @@ public class playerController : MonoBehaviour
                     Skill_Button_On();
                 }
                 TargettingImage.SetActive(true);
-                JoyController.gameObject.SetActive(!Chasetarget);
                 chaseEnemyButton.SetActive(true);
+                JoyController.gameObject.SetActive(!Chasetarget);
                 anim.SetBool("State_Battle", true);
             }
             else if (Enemy != null && Chasetarget && (transform.position - Enemy.transform.position).magnitude > attackRange)
