@@ -25438,6 +25438,14 @@ PrefabInstance:
       propertyPath: Player
       value: 
       objectReference: {fileID: 3170713869789128306}
+    - target: {fileID: 3456243524991576218, guid: 39ce32fdf1b594d16a0e05e0914f27ae, type: 3}
+      propertyPath: item
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3456243524991576218, guid: 39ce32fdf1b594d16a0e05e0914f27ae, type: 3}
+      propertyPath: Reinforce
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3456243525112399676, guid: 39ce32fdf1b594d16a0e05e0914f27ae, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -25482,6 +25490,14 @@ PrefabInstance:
       propertyPath: Player
       value: 
       objectReference: {fileID: 3170713869789128310}
+    - target: {fileID: 3456243526215276225, guid: 39ce32fdf1b594d16a0e05e0914f27ae, type: 3}
+      propertyPath: item
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3456243526215276225, guid: 39ce32fdf1b594d16a0e05e0914f27ae, type: 3}
+      propertyPath: Reinforce
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3456243526219662338, guid: 39ce32fdf1b594d16a0e05e0914f27ae, type: 3}
       propertyPath: Player
       value: 
