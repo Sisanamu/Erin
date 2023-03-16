@@ -6,23 +6,25 @@ public class GameManager : MonoBehaviour
 {
     public float UIWaitTime;
 
-    [Header("Status")]
-    public int Level = 1;
-    public int currentHp = 100;
-    public int MaxHp = 100;
-    public int currentSp = 10;
-    public int MaxSp = 10;
-    public float str = 10;
-    public float dex = 10;
-    public float def = 5;
-    public float P_speed;
+    public int Level { get; set; }
+    private int CurrentHp;
+    public int currentHp { get { return CurrentHp; } set { if (CurrentHp <= 0) CurrentHp = 0; else CurrentHp = value;} }
+    public int MaxHp;
+    private int CurrentSp;
+    public int currentSp { get { return CurrentSp; } set { if (CurrentSp <= 0) CurrentSp = 0;else CurrentSp = value; } }
+    public int MaxSp;
+    public float str { get; set; }
+    public float dex { get; set; }
+    public float def { get; set; }
+    public float P_speed { get; set; }
     public int StatusBonous;
     public int Damage;
     public float WeaponDamage;
 
-    public int EXP;
-    public int totalEXP = 100;
-    public int Gold;
+    private int exp;
+    public int EXP { get; set;}
+    public int totalEXP { get; set; }
+    public int Gold { get; set; }
 
     [Header("Status_Effect")]
     public float PowerTime;
@@ -55,12 +57,23 @@ public class GameManager : MonoBehaviour
     }
     #endregion
 
-    private void Update()
+    public void Init()
     {
-        if (GameManager.Instance.currentSp <= 0)
-        {
-            GameManager.Instance.currentSp = 0;
-        }
+        Level = 1;
+        CurrentHp = 100;
+        MaxHp = 100;
+        CurrentSp = 10;
+        MaxSp = 10;
+        str = 10;
+        dex = 10;
+        def = 0;
+        P_speed = 15;
+        StatusBonous = 0;
+        Damage = 0;
+        WeaponDamage = 0;
+        EXP = 0;
+        totalEXP = 100;
+        Gold = 0;
     }
     public int GetDamage(float EnemyDEF)
     {
@@ -106,5 +119,45 @@ public class GameManager : MonoBehaviour
     {
         Gold += _count;
         theSave.SaveData();
+    }
+    public void statusUP(string statusName)
+    {
+        switch (statusName)
+        {
+            case "MaxHp":
+                if (StatusBonous != 0)
+                {
+                    StatusBonous--;
+                    MaxHp += 5;
+                    currentHp = MaxHp;
+                    theSave.SaveData();
+                }
+                break;
+            case "MaxSp":
+                if (StatusBonous != 0)
+                {
+                    StatusBonous--;
+                    MaxSp++;
+                    currentSp = MaxSp;
+                    theSave.SaveData();
+                }
+                break;
+            case "STR":
+                if (StatusBonous != 0)
+                {
+                    StatusBonous--;
+                    str++;
+                    theSave.SaveData();
+                }
+                break;
+            case "DEX":
+                if (StatusBonous != 0)
+                {
+                    dex += 1;
+                    StatusBonous--;
+                    theSave.SaveData();
+                }
+                break;
+        }
     }
 }

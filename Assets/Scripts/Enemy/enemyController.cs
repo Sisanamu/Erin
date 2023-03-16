@@ -21,6 +21,7 @@ public class enemyController : MonoBehaviour
     [SerializeField] protected Animator anim;
     [SerializeField] protected Rigidbody rgd;
     [SerializeField] public GameObject target;
+    [SerializeField] protected playerController Player;
     [SerializeField] protected GameObject HitBox;
     [SerializeField] protected Transform SpawnPoint;
     [SerializeField] protected Collider[] Target;
@@ -142,7 +143,7 @@ public class enemyController : MonoBehaviour
             isAttack = true;
             rndAttack();
         }
-        if (target != null && target.GetComponent<playerController>().isDie)
+        if (target != null && Player.isDie)
         {
             isBattle = false;
             CanSearch = false;
@@ -182,10 +183,11 @@ public class enemyController : MonoBehaviour
             if (targets.Count != 0)
             {
                 target = targets[0];
+                Player = target.GetComponent<playerController>();
                 E_STATE = creature_STATE.ATTACK;
             }
         }
-        if (targets.Count == 0 || target.GetComponent<playerController>().isDie)
+        if (targets.Count == 0 || Player.isDie)
         {
             isAttack = false;
             E_STATE = creature_STATE.IDLE;
@@ -304,7 +306,7 @@ public class enemyController : MonoBehaviour
             }
             if (CurrentHp <= 0)
             {
-                if (target.GetComponent<playerController>().quest == null)
+                if (Player.quest == null)
                 {
                     StartCoroutine(EnemyRevive());
                 }
@@ -345,13 +347,13 @@ public class enemyController : MonoBehaviour
 
     public void questEnemy()
     {
-        if (target.GetComponent<playerController>().quest.Progress && Name == target.GetComponent<playerController>().quest.EnemyName)
+        if (Player.quest.Progress && Name == Player.quest.EnemyName)
         {
-            target.GetComponent<playerController>().quest.questGoal.EnemyKilled();
-            if (target.GetComponent<playerController>().quest.questGoal.IsReached())
+            Player.quest.questGoal.EnemyKilled();
+            if (Player.quest.questGoal.IsReached())
             {
-                target.GetComponent<playerController>().returnNpc = true;
-                target.GetComponent<playerController>().quest.isSuccess = true;
+                Player.returnNpc = true;
+                Player.quest.isSuccess = true;
             }
         }
     }
@@ -366,7 +368,6 @@ public class enemyController : MonoBehaviour
 
         isDie = true;
         Destroy(Enemy_Status_Effect.instance.go);
-        targets.Clear();
         GameManager.Instance.IncreaseEXP(exp);
         GameManager.Instance.ChangeGold(Gold);
         DeBuffEffect.SetActive(false);

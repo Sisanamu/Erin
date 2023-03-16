@@ -51,14 +51,13 @@ public class playerController : MonoBehaviour
     float AttackRange;
     public float attackDelay;
     public float attackRange;
-    public float currentTime;
+    public float currentTime{get; set;}
     public float PowerUpTime;
-    public float npcSearchRange;
-    public int PowerUpSRT;
+    private float npcSearchRange;
+    private int PowerUpSRT;
     public int enemyDamage;
     public bool Chasetarget;
-    public bool isAttack;
-    public bool fixEnemy;
+    private bool isAttack;
     public bool isGetQuest;
     public bool isWalk;
     public bool isBattle;
@@ -113,16 +112,6 @@ public class playerController : MonoBehaviour
 
     void Update()
     {
-        currentTime += Time.deltaTime;
-        sceneName = SceneManager.GetActiveScene().name;
-        if (isBattle)
-        {
-            StopCoroutine(FindTarget());
-        }
-        else if (!isBattle)
-        {
-            StartCoroutine(FindTarget());
-        }
         switch (P_STATE)
         {
             case creature_STATE.IDLE:
@@ -171,6 +160,16 @@ public class playerController : MonoBehaviour
         {
             Canvas.SetActive(true);
             rgd.isKinematic = false;
+        }
+        currentTime += Time.deltaTime;
+        sceneName = SceneManager.GetActiveScene().name;
+        if (isBattle)
+        {
+            StopCoroutine(FindTarget());
+        }
+        else if (!isBattle)
+        {
+            StartCoroutine(FindTarget());
         }
     }
 
@@ -274,7 +273,6 @@ public class playerController : MonoBehaviour
                     Enemy = Enemys[i];
                     currentEnemy = enemyDist;
                 }
-
                 TargettingImage = Enemy.transform.Find("Canvas").transform.gameObject;
             }
         }

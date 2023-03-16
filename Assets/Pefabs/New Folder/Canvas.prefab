@@ -7571,7 +7571,6 @@ MonoBehaviour:
   anim: {fileID: 0}
   LevelUpEf: {fileID: 0}
   Level: {fileID: 3456243524875348720}
-  Joystick: {fileID: 0}
   ratio_HP: 0
   ratio_SP: 0
   ratio_EXP: 0
@@ -8025,7 +8024,6 @@ MonoBehaviour:
   anim: {fileID: 0}
   LevelUpEf: {fileID: 0}
   Level: {fileID: 3456243524875348720}
-  Joystick: {fileID: 3456243526227748778}
   ratio_HP: 0
   ratio_SP: 0
   ratio_EXP: 0
@@ -11616,8 +11614,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ad92b074d358403591837ba7ddabf56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  theSave: {fileID: 0}
-  UPSTATUS: 5
 --- !u!1 &3456243526100035245
 GameObject:
   m_ObjectHideFlags: 0
@@ -11752,8 +11748,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ad92b074d358403591837ba7ddabf56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  theSave: {fileID: 0}
-  UPSTATUS: 3
 --- !u!1 &3456243526131909938
 GameObject:
   m_ObjectHideFlags: 0
@@ -13987,7 +13981,6 @@ GameObject:
   - component: {fileID: 3456243526329244440}
   - component: {fileID: 3456243526329244441}
   - component: {fileID: 3456243526329244446}
-  - component: {fileID: 3456243526329244447}
   m_Layer: 5
   m_Name: MaxHP_Plus_Point_Button
   m_TagString: Untagged
@@ -14097,20 +14090,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &3456243526329244447
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3456243526329244445}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ad92b074d358403591837ba7ddabf56, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  theSave: {fileID: 0}
-  UPSTATUS: 2
 --- !u!1 &3456243526339705771
 GameObject:
   m_ObjectHideFlags: 0
@@ -14547,7 +14526,7 @@ RectTransform:
   - {fileID: 3003895540221886107}
   - {fileID: 3456243526777220193}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -16952,8 +16931,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ad92b074d358403591837ba7ddabf56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  theSave: {fileID: 0}
-  UPSTATUS: 4
 --- !u!1 &3456243526703311316
 GameObject:
   m_ObjectHideFlags: 0

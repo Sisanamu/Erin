@@ -68,7 +68,7 @@ public class Golem : Boss
             isAttack = true;
             rndAttack();
         }
-        if (target != null && target.GetComponent<playerController>().isDie)
+        if (target != null && Player.isDie)
         {
             isBattle = false;
             CanSearch = false;
@@ -92,7 +92,7 @@ public class Golem : Boss
         base.OnTriggerEnter(other);
         if (CurrentHp <= 0)
         {
-            target.GetComponent<playerController>().ClearBoss = true;
+            Player.ClearBoss = true;
             SpawnTime = Mathf.Infinity;
         }
     }

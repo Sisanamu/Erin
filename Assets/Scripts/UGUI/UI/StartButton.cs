@@ -38,8 +38,7 @@ public class StartButton : MonoBehaviour
     }
     public void StartGame(string SceneName)
     {
-        loadingSceneManager.LoadScene(SceneName);
-        gameObject.SetActive(false);
+        StartCoroutine(StartCoroutine(SceneName));
     }
     public void LoadGame()
     {
@@ -59,6 +58,16 @@ public class StartButton : MonoBehaviour
         }
         theSaveNLoad = FindObjectOfType<SaveNLoad>();
         theSaveNLoad.LoadData();
+        gameObject.SetActive(false);
+    }
+    IEnumerator StartCoroutine(string SceneName)
+    {
+        loadingSceneManager.LoadScene(SceneName);
+        while (!loadingSceneManager.isdone)
+        {
+            yield return null;
+        }
+        GameManager.Instance.Init();
         gameObject.SetActive(false);
     }
     IEnumerator NotHaveSave()
