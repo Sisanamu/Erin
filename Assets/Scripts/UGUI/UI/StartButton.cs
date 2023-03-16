@@ -38,7 +38,7 @@ public class StartButton : MonoBehaviour
     }
     public void StartGame(string SceneName)
     {
-        StartCoroutine(StartCoroutine(SceneName));
+        StartCoroutine(LoadScene(SceneName));
     }
     public void LoadGame()
     {
@@ -60,7 +60,7 @@ public class StartButton : MonoBehaviour
         theSaveNLoad.LoadData();
         gameObject.SetActive(false);
     }
-    IEnumerator StartCoroutine(string SceneName)
+    IEnumerator LoadScene(string SceneName)
     {
         loadingSceneManager.LoadScene(SceneName);
         while (!loadingSceneManager.isdone)

@@ -25,6 +25,9 @@ public class playerController : MonoBehaviour
     public Quest quest;
     public bool returnNpc;
 
+    public int MaxHP;
+    public int MaxSP;
+
     public GameObject TargettingImage;
     public GameObject Enemy;
     public npcController NPC;
@@ -51,7 +54,7 @@ public class playerController : MonoBehaviour
     float AttackRange;
     public float attackDelay;
     public float attackRange;
-    public float currentTime{get; set;}
+    public float currentTime;
     public float PowerUpTime;
     private float npcSearchRange;
     private int PowerUpSRT;
@@ -69,7 +72,6 @@ public class playerController : MonoBehaviour
     public float enemyDist;
     float npcDist;
     int temp;
-    public string sceneName;
 
     [Header("Skill")]
     public bool isDefence;
@@ -105,6 +107,7 @@ public class playerController : MonoBehaviour
     #endregion
     void Start()
     {
+        P_STATE = creature_STATE.IDLE;
         anim = GetComponent<Animator>();
         rgd = GetComponent<Rigidbody>();
         quest = null;
@@ -112,6 +115,8 @@ public class playerController : MonoBehaviour
 
     void Update()
     {
+        SceneName = SceneManager.GetActiveScene().name;
+        currentTime += Time.deltaTime;
         switch (P_STATE)
         {
             case creature_STATE.IDLE:
@@ -130,8 +135,6 @@ public class playerController : MonoBehaviour
             isAttack = false;
             currentTime = 0;
         }
-        if (GameManager.Instance.currentHp <= 0)
-            P_STATE = creature_STATE.Death;
         if (quest != null)
         {
             if (quest.Progress)
@@ -161,8 +164,6 @@ public class playerController : MonoBehaviour
             Canvas.SetActive(true);
             rgd.isKinematic = false;
         }
-        currentTime += Time.deltaTime;
-        sceneName = SceneManager.GetActiveScene().name;
         if (isBattle)
         {
             StopCoroutine(FindTarget());
@@ -246,6 +247,10 @@ public class playerController : MonoBehaviour
         anim.SetBool("Diestay", true);
         anim.SetBool("State_Battle", false);
         anim.ResetTrigger("IsHit");
+        if(revivePlayer.activeSelf)
+        {
+            StopAllCoroutines();
+        }
     }
     IEnumerator FindTarget()
     {
@@ -351,9 +356,11 @@ public class playerController : MonoBehaviour
 
     public void nowPlaceRevive(int EXP)
     {
+        MaxHP = GameManager.Instance.MaxHp;
+        MaxSP = GameManager.Instance.MaxSp;
         GameManager.Instance.EXP -= EXP;
-        GameManager.Instance.currentHp = GameManager.Instance.MaxHp;
-        GameManager.Instance.currentSp = GameManager.Instance.MaxSp;
+        GameManager.Instance.currentHp = MaxHP;
+        GameManager.Instance.currentSp = MaxSP;
         isDie = false;
         P_STATE = creature_STATE.IDLE;
         revivePlayer.SetActive(false);
@@ -362,12 +369,14 @@ public class playerController : MonoBehaviour
     }
     public void lastPlaceRevive(int EXP)
     {
+        MaxHP = GameManager.Instance.MaxHp;
+        MaxSP = GameManager.Instance.MaxSp;
         if (revivePoint.x != 0)
         {
             transform.position = revivePoint;
             GameManager.Instance.EXP -= EXP;
-            GameManager.Instance.currentHp = GameManager.Instance.MaxHp;
-            GameManager.Instance.currentSp = GameManager.Instance.MaxSp;
+            GameManager.Instance.currentHp = MaxHP;
+            GameManager.Instance.currentSp = MaxSP;
             isDie = false;
             P_STATE = creature_STATE.IDLE;
             revivePlayer.SetActive(false);
@@ -405,7 +414,6 @@ public class playerController : MonoBehaviour
         {
             StartCoroutine(LoadandActive());
             revivePoint = other.GetComponent<warpController>().warpPos;
-            SceneName = other.GetComponent<warpController>().SceneName;
             anim.SetBool("IsMove", false);
         }
 

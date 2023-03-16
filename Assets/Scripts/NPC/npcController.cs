@@ -33,12 +33,7 @@ public class npcController : MonoBehaviour
     protected virtual void Update()
     {
         UIaim();
-        if (isWalk)
-        {
-            PatrolOn();
-        }
-        else
-            PatrolOff();
+        PatrolOn();
         if (dialogueOn)
         {
             dialogue.SetActive(true);
@@ -55,7 +50,7 @@ public class npcController : MonoBehaviour
     }
     void PatrolOn()
     {
-        if (WaitTime > 0)
+        if (WaitTime > 0 && isWalk)
         {
             anim.SetBool("IsWalk", true);
             transform.Translate(Vector3.forward * N_Speed * Time.deltaTime);
@@ -65,10 +60,6 @@ public class npcController : MonoBehaviour
         {
             StartCoroutine(NextPatrol());
         }
-    }
-    void PatrolOff()
-    {
-        anim.SetBool("IsWalk", false);
     }
     public void Rotate(GameObject target)
     {

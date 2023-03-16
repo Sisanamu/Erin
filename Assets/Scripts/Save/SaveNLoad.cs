@@ -139,6 +139,7 @@ public class SaveNLoad : MonoBehaviour
                 string loadJson = File.ReadAllText(File_Path);
                 saveDate = JsonUtility.FromJson<SaveData>(loadJson);
                 getSceneName = saveDate.SceneName;
+                Debug.Log(File_Path);
                 Debug.Log($"로드 완료 : {getSceneName}");
             }
             else

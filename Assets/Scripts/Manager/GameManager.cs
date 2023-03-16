@@ -1,17 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     public float UIWaitTime;
 
     public int Level { get; set; }
-    private int CurrentHp;
-    public int currentHp { get { return CurrentHp; } set { if (CurrentHp <= 0) CurrentHp = 0; else CurrentHp = value;} }
+    public int currentHp{get; set;}
     public int MaxHp;
-    private int CurrentSp;
-    public int currentSp { get { return CurrentSp; } set { if (CurrentSp <= 0) CurrentSp = 0;else CurrentSp = value; } }
+    public int currentSp { get; set;}
     public int MaxSp;
     public float str { get; set; }
     public float dex { get; set; }
@@ -21,8 +20,7 @@ public class GameManager : MonoBehaviour
     public int Damage;
     public float WeaponDamage;
 
-    private int exp;
-    public int EXP { get; set;}
+    public int EXP { get; set; }
     public int totalEXP { get; set; }
     public int Gold { get; set; }
 
@@ -60,9 +58,9 @@ public class GameManager : MonoBehaviour
     public void Init()
     {
         Level = 1;
-        CurrentHp = 100;
+        currentHp = 100;
         MaxHp = 100;
-        CurrentSp = 10;
+        currentSp = 10;
         MaxSp = 10;
         str = 10;
         dex = 10;
