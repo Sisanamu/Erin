@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public float UIWaitTime;
-
     public int Level { get; set; }
     public int currentHp{get; set;}
     public int MaxHp;

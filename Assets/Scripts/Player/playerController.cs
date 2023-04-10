@@ -115,8 +115,6 @@ public class playerController : MonoBehaviour
 
     void Update()
     {
-        SceneName = SceneManager.GetActiveScene().name;
-        currentTime += Time.deltaTime;
         switch (P_STATE)
         {
             case creature_STATE.IDLE:
@@ -127,13 +125,7 @@ public class playerController : MonoBehaviour
                 break;
             case creature_STATE.Death:
                 Die();
-                Enemy = null;
                 break;
-        }
-        if (currentTime > attackDelay)
-        {
-            isAttack = false;
-            currentTime = 0;
         }
         if (quest != null)
         {
@@ -151,91 +143,102 @@ public class playerController : MonoBehaviour
         }
         if (NPC != null)
         {
-            meetNpcButton.SetActive(true);
-            if (dialogueOn)
-                Rotate(NPC.gameObject);
+
         }
         else
             meetNpcButton.SetActive(false);
-        if(ClearBoss)
+        if (ClearBoss)
             StartCoroutine(ClearBossUI());
-        if(loadingSceneManager.isdone)
+        if (loadingSceneManager.isdone)
         {
             Canvas.SetActive(true);
             rgd.isKinematic = false;
-        }
-        if (isBattle)
-        {
-            StopCoroutine(FindTarget());
-        }
-        else if (!isBattle)
-        {
-            StartCoroutine(FindTarget());
         }
     }
 
     private void Idle()
     {
+        ComboStep = 0;
+        Enemy = null;
+        Chasetarget = false;
+        isBattle = false;
+        isAttack = false;
+        if(NPC != null)
+            MeetNPC();
+        
+        SceneName = SceneManager.GetActiveScene().name;
         anim.SetBool("State_Battle", false);
+        ResetTrigger();
+        revivePlayer.SetActive(false);
         chaseEnemyButton.SetActive(false);
+        Skill_Button_off();
+        StartCoroutine(FindTarget());
+    }
+
+    private void MeetNPC()
+    {
+        meetNpcButton.SetActive(true);
+        if (dialogueOn)
+            Rotate(NPC.gameObject);
+    }
+
+    private void ResetTrigger()
+    {
         anim.ResetTrigger("IsHit");
         anim.ResetTrigger("IsCharge");
         anim.ResetTrigger("IsWhirlwind");
         anim.ResetTrigger("IsDefenceHit");
-        ComboStep = 0;
-        TargettingImage = null;
-        Chasetarget = false;
-        isBattle = false;
-        revivePlayer.SetActive(false);
-        Enemy = null;
-        chaseEnemyButton.SetActive(false);
-        Skill_Button_off();
-        isAttack = false;
-        StartCoroutine(FindTarget());
     }
 
     private void Attack()
     {
+        currentTime += Time.deltaTime;
+        if (currentTime > attackDelay)
+        {
+            isAttack = false;
+            currentTime = 0;
+        }
         if (!isDie)
         {
             if (Enemy.GetComponent<enemyController>().CurrentHp <= 0 && Enemy.GetComponent<enemyController>().isDie)
-            {
                 P_STATE = creature_STATE.IDLE;
-                StartCoroutine(FindTarget());
-                ComboStep = 0;
-                isAttack = false;
-                currentTime = 0;
-                TargettingImage.SetActive(false);
-                Chasetarget = false;
-            }
-            if (Enemy != null && !Chasetarget && (transform.position - Enemy.transform.position).magnitude < SearchRange)
+            if (!Chasetarget)
             {
-                if(!SkillIcon[0].GetComponent<Image>().enabled)
-                {
-                    Skill_Button_On();
-                }
                 TargettingImage.SetActive(true);
-                chaseEnemyButton.SetActive(true);
-                JoyController.gameObject.SetActive(!Chasetarget);
-                anim.SetBool("State_Battle", true);
-            }
-            else if (Enemy != null && Chasetarget && (transform.position - Enemy.transform.position).magnitude > attackRange)
-            {
-                JoyController.gameObject.SetActive(false);
-                Rotate(Enemy);
-                Move();
-            }
-            else if (Enemy != null &&
-                (transform.position - Enemy.transform.position).magnitude <= attackRange)
-            {
-                anim.SetBool("IsMove", false);
-                if (isAttack == false)
+                JoyController.gameObject.SetActive(true);
+                if ((transform.position - Enemy.transform.position).magnitude < SearchRange)
                 {
-                    transform.LookAt(Enemy.transform);
-                    ComboAttack();
-                    currentTime = 0;
+                    StopCoroutine(FindTarget());
+                    if (!SkillIcon[0].GetComponent<Image>().enabled)
+                        Skill_Button_On();
+                    chaseEnemyButton.SetActive(TargettingImage.activeSelf);
+                    anim.SetBool("State_Battle", true);
+                }
+                else
+                {
+                    P_STATE = creature_STATE.IDLE;
                 }
             }
+            else if (Chasetarget)
+            {
+                if ((transform.position - Enemy.transform.position).magnitude > attackRange)
+                {
+                    JoyController.gameObject.SetActive(false);
+                    Rotate(Enemy);
+                    Move();
+                }
+                else
+                {
+                    anim.SetBool("IsMove", false);
+                    if (isAttack == false)
+                    {
+                        transform.LookAt(Enemy.transform);
+                        ComboAttack();
+                        currentTime = 0;
+                    }
+                }
+            }
+
         }
         else
             P_STATE = creature_STATE.Death;
@@ -243,11 +246,13 @@ public class playerController : MonoBehaviour
 
     void Die()
     {
+        StopCoroutine(FindTarget());
+        Enemy = null;
         Chasetarget = false;
         anim.SetBool("Diestay", true);
         anim.SetBool("State_Battle", false);
         anim.ResetTrigger("IsHit");
-        if(revivePlayer.activeSelf)
+        if (revivePlayer.activeSelf)
         {
             StopAllCoroutines();
         }

@@ -25477,6 +25477,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3456243524807516828, guid: 39ce32fdf1b594d16a0e05e0914f27ae, type: 3}
+      propertyPath: m_ShowMaskGraphic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3456243524894875488, guid: 39ce32fdf1b594d16a0e05e0914f27ae, type: 3}
       propertyPath: Player
       value: 
@@ -25837,6 +25841,18 @@ PrefabInstance:
       propertyPath: Player
       value: 
       objectReference: {fileID: 3170713869789128306}
+    - target: {fileID: 3456243526227748771, guid: 39ce32fdf1b594d16a0e05e0914f27ae, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3456243526227748771, guid: 39ce32fdf1b594d16a0e05e0914f27ae, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3456243526227748771, guid: 39ce32fdf1b594d16a0e05e0914f27ae, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3456243526329244444, guid: 39ce32fdf1b594d16a0e05e0914f27ae, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
