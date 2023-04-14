@@ -84,9 +84,7 @@ public class enemyController : MonoBehaviour
         E_STATE = creature_STATE.IDLE;
     }
     protected virtual void Update()
-    {
-        if (isBattle)
-            currentTime += Time.deltaTime;
+    { 
         UpdateUI();
         switch (E_STATE)
         {
@@ -100,22 +98,20 @@ public class enemyController : MonoBehaviour
                 Attack();
                 break;
         }
+        
+        if (CurrentHp >= MaxHp)
+        {
+            CurrentHp = MaxHp;
+        }
+    }
+    public virtual void Attack()
+    {
+        currentTime += Time.deltaTime;
         if (currentTime > attackDelay)
         {
             isAttack = false;
             currentTime = 0;
         }
-        if (CurrentHp >= MaxHp)
-        {
-            CurrentHp = MaxHp;
-        }
-        if (isDie)
-        {
-            Canvas.SetActive(false);
-        }
-    }
-    public virtual void Attack()
-    {
         if (target == null)
         {
             Monster_Name.GetComponent<Text>().color = Color.white;
@@ -305,11 +301,10 @@ public class enemyController : MonoBehaviour
                 }
             }
             if (CurrentHp <= 0)
-            {
+            { 
+                Canvas.SetActive(false);
                 if (Player.quest == null)
-                {
                     StartCoroutine(EnemyRevive());
-                }
                 else
                 {
                     questEnemy();

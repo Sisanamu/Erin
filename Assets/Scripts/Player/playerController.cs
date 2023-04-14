@@ -127,26 +127,6 @@ public class playerController : MonoBehaviour
                 Die();
                 break;
         }
-        if (quest != null)
-        {
-            if (quest.Progress)
-                questPopup.SetActive(true);
-            else if (!quest.Progress)
-            {
-                returnNpc = false;
-                quest = null;
-            }
-        }
-        else if (quest == null)
-        {
-            questPopup.SetActive(false);
-        }
-        if (NPC != null)
-        {
-
-        }
-        else
-            meetNpcButton.SetActive(false);
         if (ClearBoss)
             StartCoroutine(ClearBossUI());
         if (loadingSceneManager.isdone)
@@ -158,21 +138,41 @@ public class playerController : MonoBehaviour
 
     private void Idle()
     {
+        if(NPC != null)
+            MeetNPC();
+        SceneName = SceneManager.GetActiveScene().name;
+        QuestState();
+        ResetState();
+        ResetTrigger();
+        Skill_Button_off();
+        StartCoroutine(FindTarget());
+    }
+    void QuestState()
+    {
+        if (quest != null)
+        {
+            if (quest.Progress)
+                questPopup.SetActive(true);
+            else if (!quest.Progress)
+            {
+                returnNpc = false;
+                quest = null;
+            }
+        }
+        else
+            questPopup.SetActive(false);
+    }
+    void ResetState()
+    {
         ComboStep = 0;
         Enemy = null;
         Chasetarget = false;
         isBattle = false;
         isAttack = false;
-        if(NPC != null)
-            MeetNPC();
-        
-        SceneName = SceneManager.GetActiveScene().name;
-        anim.SetBool("State_Battle", false);
-        ResetTrigger();
         revivePlayer.SetActive(false);
         chaseEnemyButton.SetActive(false);
-        Skill_Button_off();
-        StartCoroutine(FindTarget());
+        meetNpcButton.SetActive(false);
+        anim.SetBool("State_Battle", false);
     }
 
     private void MeetNPC()
@@ -215,15 +215,13 @@ public class playerController : MonoBehaviour
                     anim.SetBool("State_Battle", true);
                 }
                 else
-                {
                     P_STATE = creature_STATE.IDLE;
-                }
             }
             else if (Chasetarget)
             {
+                JoyController.gameObject.SetActive(false);
                 if ((transform.position - Enemy.transform.position).magnitude > attackRange)
                 {
-                    JoyController.gameObject.SetActive(false);
                     Rotate(Enemy);
                     Move();
                 }
@@ -253,9 +251,7 @@ public class playerController : MonoBehaviour
         anim.SetBool("State_Battle", false);
         anim.ResetTrigger("IsHit");
         if (revivePlayer.activeSelf)
-        {
             StopAllCoroutines();
-        }
     }
     IEnumerator FindTarget()
     {
@@ -287,10 +283,7 @@ public class playerController : MonoBehaviour
             }
         }
         else if (enemylist.Length == 0 && TargettingImage != null)
-        {
             TargettingImage = null;
-            P_STATE = creature_STATE.IDLE;
-        }
     }
 
     void Move()

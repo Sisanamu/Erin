@@ -35,18 +35,14 @@ public class npcController : MonoBehaviour
         UIaim();
         PatrolOn();
         if (dialogueOn)
-        {
             dialogue.SetActive(true);
-        }
         else
         {
             dialogue.GetComponentInChildren<nomaldialogue>().dialogueIndex = 0;
             dialogue.SetActive(false);
         }
-        if(Player != null)
-        {
+        if (Player != null)
             Rotate(Player.gameObject);
-        }
     }
     void PatrolOn()
     {
@@ -57,9 +53,7 @@ public class npcController : MonoBehaviour
             WaitTime -= Time.deltaTime;
         }
         else if (WaitTime <= 0)
-        {
             StartCoroutine(NextPatrol());
-        }
     }
     public void Rotate(GameObject target)
     {
@@ -80,8 +74,5 @@ public class npcController : MonoBehaviour
         isWalk = true;
         transform.LookAt(waitPoint);
     }
-    void UIaim()
-    {
-        nameUI.transform.position = Camera.main.WorldToScreenPoint(transform.position + new Vector3(0, 2f, 0));
-    }
+    void UIaim() { nameUI.transform.position = Camera.main.WorldToScreenPoint(transform.position + new Vector3(0, 2f, 0)); }
 }
