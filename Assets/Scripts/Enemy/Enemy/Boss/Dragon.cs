@@ -72,12 +72,12 @@ public class Dragon : Boss
                     anim.ResetTrigger("IsAttack");
                     if (GetDamage > def)
                     {
-                        CurrentHp -= Mathf.Abs(GetDamage - def);
+                        currentHP -= Mathf.Abs(GetDamage - def);
                         go.GetComponent<DamageText>().Damage = Mathf.Abs(GetDamage - (int)def);
                     }
                     else if (GetDamage <= def)
                     {
-                        CurrentHp -= 1;
+                        currentHP -= 1;
                         go.GetComponent<DamageText>().Damage = 1;
                     }
                     isDefence = false;
@@ -88,7 +88,7 @@ public class Dragon : Boss
                     anim.SetTrigger("IsHit");
                     StartCoroutine(HitEffectOn());
                     go.GetComponent<DamageText>().Damage = GetDamage;
-                    CurrentHp -= GetDamage;
+                    currentHP -= GetDamage;
                     Defence();
                 }
 
@@ -99,9 +99,9 @@ public class Dragon : Boss
                 anim.SetTrigger("IsHit");
                 StartCoroutine(HitEffectOn());
                 go.GetComponent<DamageText>().Damage = GetDamage;
-                CurrentHp -= GetDamage;
+                currentHP -= GetDamage;
             }
-            if (CurrentHp <= 0)
+            if (currentHP <= 0)
             {
                 Warp.GetComponent<warpController>().SceneName = "Game";
                 Warp.GetComponent<warpController>().warpPos = new Vector3(11, 0, 0);

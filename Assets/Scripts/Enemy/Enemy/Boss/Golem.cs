@@ -90,7 +90,7 @@ public class Golem : Boss
     protected override void OnTriggerEnter(Collider other)
     {
         base.OnTriggerEnter(other);
-        if (CurrentHp <= 0)
+        if (currentHP <= 0)
         {
             Player.ClearBoss = true;
             SpawnTime = Mathf.Infinity;

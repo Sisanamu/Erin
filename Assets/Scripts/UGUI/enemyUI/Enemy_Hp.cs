@@ -16,7 +16,7 @@ public class Enemy_Hp : MonoBehaviour
 
     void Update()
     {
-        ratio = Enemy.GetComponent<enemyController>().CurrentHp / Enemy.GetComponent<enemyController>().MaxHp;
+        ratio = Enemy.GetComponent<enemyController>().currentHP / Enemy.GetComponent<enemyController>().MaxHp;
         Hp.fillAmount = Mathf.Lerp(Hp.fillAmount, ratio, 0.5f);
     }
 }

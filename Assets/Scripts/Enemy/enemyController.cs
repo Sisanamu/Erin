@@ -38,7 +38,16 @@ public class enemyController : MonoBehaviour
     [SerializeField] protected float attackDelay;
     [SerializeField] protected float currentTime;
     [SerializeField] protected float ratio;
-    [SerializeField] public float CurrentHp;
+    [SerializeField] private float CurrentHp;
+    public float currentHP
+    {
+        get { return CurrentHp; }
+        set
+        {
+            if (CurrentHp >= MaxHp)
+                CurrentHp = MaxHp;
+        }
+    }
     [SerializeField] public float MaxHp;
     [SerializeField] protected float StartPatrolTime;
     [SerializeField] protected float WaitTime;
@@ -84,7 +93,7 @@ public class enemyController : MonoBehaviour
         E_STATE = creature_STATE.IDLE;
     }
     protected virtual void Update()
-    { 
+    {
         UpdateUI();
         switch (E_STATE)
         {
@@ -97,11 +106,6 @@ public class enemyController : MonoBehaviour
             case creature_STATE.ATTACK:
                 Attack();
                 break;
-        }
-        
-        if (CurrentHp >= MaxHp)
-        {
-            CurrentHp = MaxHp;
         }
     }
     public virtual void Attack()
@@ -117,7 +121,7 @@ public class enemyController : MonoBehaviour
             Monster_Name.GetComponent<Text>().color = Color.white;
             E_STATE = creature_STATE.IDLE;
         }
-        if (target != null && (transform.position - target.transform.position).magnitude > FindRange+1f)
+        if (target != null && (transform.position - target.transform.position).magnitude > FindRange + 1f)
         {
             isBattle = false;
             anim.SetBool("IsBattle", isBattle);
@@ -149,7 +153,7 @@ public class enemyController : MonoBehaviour
     }
     public virtual void Idle()
     {
-        if(Canvas.activeSelf)
+        if (Canvas.activeSelf)
         {
             Destroy(Enemy_Status_Effect.instance.go);
             Canvas.SetActive(false);
@@ -301,7 +305,7 @@ public class enemyController : MonoBehaviour
                 }
             }
             if (CurrentHp <= 0)
-            { 
+            {
                 Canvas.SetActive(false);
                 if (Player.quest == null)
                     StartCoroutine(EnemyRevive());
@@ -360,35 +364,32 @@ public class enemyController : MonoBehaviour
             StartPos.x + UnityEngine.Random.Range(-5, 5)
             , StartPos.y,
             StartPos.z + UnityEngine.Random.Range(-5, 5));
-
-        isDie = true;
         Destroy(Enemy_Status_Effect.instance.go);
-        GameManager.Instance.IncreaseEXP(exp);
-        GameManager.Instance.ChangeGold(Gold);
+
+
         DeBuffEffect.SetActive(false);
+        isDie = true;
+        rgd.isKinematic = true;
         CanSearch = false;
         isWalk = false;
-        DropItem();
-        anim.SetBool("IsBattle", false);
-        rgd.isKinematic = true;
         col.enabled = false;
         CurrentHp = 0;
+        anim.SetBool("IsBattle", false);
         anim.SetTrigger("Death");
         yield return new WaitForSeconds(DeathTime);
+        GetReWard();
+        ResetTrigger();
+        skinRensoff();
         isDie = false;
         target = null;
-        anim.ResetTrigger("IsHit");
-        anim.ResetTrigger("IsAttack");
-        anim.ResetTrigger("IsFound");
         transform.position = SpawnPos;
-        skinRensoff();
         CurrentHp = MaxHp;
         yield return new WaitForSeconds(SpawnTime);
         E_STATE = creature_STATE.IDLE;
         col.enabled = true;
-        skinRenson();
         rgd.isKinematic = false;
         CanSearch = true;
+        skinRenson();
     }
     IEnumerator WaitPoint()
     {
@@ -401,6 +402,18 @@ public class enemyController : MonoBehaviour
         yield return new WaitForSeconds(StopTime);
         E_STATE = creature_STATE.FIND;
         isWalk = true;
+    }
+    void ResetTrigger()
+    {
+        anim.ResetTrigger("IsHit");
+        anim.ResetTrigger("IsAttack");
+        anim.ResetTrigger("IsFound");
+    }
+    void GetReWard()
+    {
+        GameManager.Instance.IncreaseEXP(exp);
+        GameManager.Instance.ChangeGold(Gold);
+        DropItem();
     }
 
     protected IEnumerator HitEffectOn()
@@ -451,15 +464,11 @@ public class enemyController : MonoBehaviour
     void skinRensoff()
     {
         for (int i = 0; i < skinRen.Length; i++)
-        {
             skinRen[i].enabled = false;
-        }
     }
     void skinRenson()
     {
         for (int i = 0; i < skinRen.Length; i++)
-        {
             skinRen[i].enabled = true;
-        }
     }
 }

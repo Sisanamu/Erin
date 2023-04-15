@@ -127,8 +127,7 @@ public class playerController : MonoBehaviour
                 Die();
                 break;
         }
-        if (ClearBoss)
-            StartCoroutine(ClearBossUI());
+        
         if (loadingSceneManager.isdone)
         {
             Canvas.SetActive(true);
@@ -200,7 +199,7 @@ public class playerController : MonoBehaviour
         }
         if (!isDie)
         {
-            if (Enemy.GetComponent<enemyController>().CurrentHp <= 0 && Enemy.GetComponent<enemyController>().isDie)
+            if (Enemy.GetComponent<enemyController>().currentHP <= 0 && Enemy.GetComponent<enemyController>().isDie)
                 P_STATE = creature_STATE.IDLE;
             if (!Chasetarget)
             {
@@ -454,6 +453,8 @@ public class playerController : MonoBehaviour
                 anim.SetTrigger("Die");
                 StartCoroutine(reviveWindow());
             }
+            if (ClearBoss)
+                StartCoroutine(ClearBossUI());
         }
     }
 

@@ -43,7 +43,7 @@ public class EnemySpawn : MonoBehaviour
                 Enemylist[i].transform.position = SpawnPos;
                 return;
             }
-            else if (Enemylist[i].GetComponent<enemyController>().CurrentHp <= 0 && !Enemylist[i].GetComponent<enemyController>().skinRen[0])
+            else if (Enemylist[i].GetComponent<enemyController>().currentHP <= 0 && !Enemylist[i].GetComponent<enemyController>().skinRen[0])
             {
                 Enemylist[i].transform.position = SpawnPos;
             }
