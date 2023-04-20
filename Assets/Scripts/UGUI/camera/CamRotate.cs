@@ -37,7 +37,6 @@ public class CamRotate : MonoBehaviour, IDragHandler, IBeginDragHandler
 
         if (xAngle > 30) xAngle = 30;
         if (xAngle < -10) xAngle = -10;
-
     }
     private void FixedUpdate()
     { 

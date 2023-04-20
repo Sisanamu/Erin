@@ -34,6 +34,5 @@ public class CamController : MonoBehaviour
             Debug.DrawLine(PlayerPos, PlayerCam, Color.green, 15.5f);
             transform.localPosition = _delta;
         }
-
     }
 }
