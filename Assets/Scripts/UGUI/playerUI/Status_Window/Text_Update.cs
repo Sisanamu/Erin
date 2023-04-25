@@ -35,8 +35,8 @@ public class Text_Update : MonoBehaviour
             case STATUS.Level:
                 StatusText.text = GameManager.Instance.Level.ToString();
                 break;
-            case STATUS.StatusBonous:
-                StatusText.text = GameManager.Instance.StatusBonous.ToString();
+            case STATUS.StatusBonus:
+                StatusText.text = GameManager.Instance.StatusBonus.ToString();
                 break;
         }
     }

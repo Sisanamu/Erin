@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
     public float dex { get; set; }
     public float def { get; set; }
     public float P_speed { get; set; }
-    public int StatusBonous;
+    public int StatusBonus;
     public int Damage;
     public float WeaponDamage;
 
@@ -65,7 +65,7 @@ public class GameManager : MonoBehaviour
         dex = 10;
         def = 0;
         P_speed = 15;
-        StatusBonous = 0;
+        StatusBonus = 0;
         Damage = 0;
         WeaponDamage = 0;
         EXP = 0;
@@ -122,36 +122,36 @@ public class GameManager : MonoBehaviour
         switch (statusName)
         {
             case "MaxHp":
-                if (StatusBonous != 0)
+                if (StatusBonus != 0)
                 {
-                    StatusBonous--;
+                    StatusBonus--;
                     MaxHp += 5;
                     currentHp = MaxHp;
                     theSave.SaveData();
                 }
                 break;
             case "MaxSp":
-                if (StatusBonous != 0)
+                if (StatusBonus != 0)
                 {
-                    StatusBonous--;
+                    StatusBonus--;
                     MaxSp++;
                     currentSp = MaxSp;
                     theSave.SaveData();
                 }
                 break;
             case "STR":
-                if (StatusBonous != 0)
+                if (StatusBonus != 0)
                 {
-                    StatusBonous--;
+                    StatusBonus--;
                     str++;
                     theSave.SaveData();
                 }
                 break;
             case "DEX":
-                if (StatusBonous != 0)
+                if (StatusBonus != 0)
                 {
                     dex += 1;
-                    StatusBonous--;
+                    StatusBonus--;
                     theSave.SaveData();
                 }
                 break;

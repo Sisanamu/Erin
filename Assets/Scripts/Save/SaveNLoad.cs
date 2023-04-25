@@ -72,7 +72,7 @@ public class SaveNLoad : MonoBehaviour
         saveDate.MaxSp = theState.MaxSp;
         saveDate.str = theState.str;
         saveDate.dex = theState.dex;
-        saveDate.StatusBonous = theState.StatusBonous;
+        saveDate.StatusBonous = theState.StatusBonus;
         saveDate.EXP = theState.EXP;
         saveDate.totalEXP = theState.totalEXP;
         saveDate.Gold = theState.Gold;
@@ -163,7 +163,7 @@ public class SaveNLoad : MonoBehaviour
                 theState.MaxSp = saveDate.MaxSp;
                 theState.str = saveDate.str;
                 theState.dex = saveDate.dex;
-                theState.StatusBonous = saveDate.StatusBonous;
+                theState.StatusBonus = saveDate.StatusBonous;
                 theState.EXP = saveDate.EXP;
                 theState.totalEXP = saveDate.totalEXP;
                 theState.Gold = saveDate.Gold;

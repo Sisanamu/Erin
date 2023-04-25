@@ -27,8 +27,6 @@ public class nomaldialogue : dialogueController
             enterButton.SetActive(false);
         }
         if (dialogueList.Count - 1 == dialogueIndex)
-        {
             enterButton.SetActive(true);
-        }
     }
 }

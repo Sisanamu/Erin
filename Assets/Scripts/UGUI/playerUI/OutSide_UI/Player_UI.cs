@@ -51,7 +51,7 @@ public class Player_UI : MonoBehaviour
         {
             GameManager.Instance.EXP = GameManager.Instance.EXP - GameManager.Instance.totalEXP;
             GameManager.Instance.Level += 1;
-            GameManager.Instance.StatusBonous += 5;
+            GameManager.Instance.StatusBonus += 5;
             GameManager.Instance.totalEXP += 50;
             GameManager.Instance.currentHp = GameManager.Instance.MaxHp;
             GameManager.Instance.currentSp = GameManager.Instance.MaxSp;

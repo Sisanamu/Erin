@@ -170,7 +170,6 @@ public class playerController : MonoBehaviour
         isAttack = false;
         revivePlayer.SetActive(false);
         chaseEnemyButton.SetActive(false);
-        meetNpcButton.SetActive(false);
         anim.SetBool("State_Battle", false);
     }
 
@@ -179,6 +178,13 @@ public class playerController : MonoBehaviour
         meetNpcButton.SetActive(true);
         if (dialogueOn)
             Rotate(NPC.gameObject);
+    }
+    public void resetQuest()
+    {
+        isGetQuest = false;
+        quest = null;
+        returnNpc = false;
+        dialogueOn = false;
     }
 
     private void ResetTrigger()
