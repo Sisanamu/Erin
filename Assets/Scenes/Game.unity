@@ -26191,6 +26191,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 857551587}
     - target: {fileID: 1573486516402367164, guid: a3e4731cc886e4c9289870db89be7e4d, type: 3}
+      propertyPath: SpawnCount
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1573486516402367164, guid: a3e4731cc886e4c9289870db89be7e4d, type: 3}
       propertyPath: isGetQuest
       value: 0
       objectReference: {fileID: 0}

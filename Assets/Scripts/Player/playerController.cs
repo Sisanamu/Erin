@@ -38,7 +38,6 @@ public class playerController : MonoBehaviour
     public Image CamController;
     public GameObject[] SkillIcon;
     public GameObject[] SkillBackGround;
-    public GameObject Damagetxt;
     public GameObject questPopup;
     public GameObject revivePlayer;
     public GameObject noHaveSavePoint;
@@ -73,6 +72,13 @@ public class playerController : MonoBehaviour
     float npcDist;
     int temp;
 
+    [Header("DamageText")]
+
+    public GameObject Damagetxt;
+    public int SpawnCount;
+    public List<GameObject> Textlist = new List<GameObject>();
+    GameObject TextParent;
+
     [Header("Skill")]
     public bool isDefence;
     public bool isWhirlwind;
@@ -105,8 +111,15 @@ public class playerController : MonoBehaviour
             Destroy(gameObject);
     }
     #endregion
+
     void Start()
     {
+        for (int i = 0; i < SpawnCount; i++)
+        {
+            GameObject obj = Instantiate(Damagetxt, transform);
+            obj.SetActive(false);
+            Textlist.Add(obj);
+        }
         P_STATE = creature_STATE.IDLE;
         anim = GetComponent<Animator>();
         rgd = GetComponent<Rigidbody>();
@@ -127,7 +140,7 @@ public class playerController : MonoBehaviour
                 Die();
                 break;
         }
-        
+
         if (loadingSceneManager.isdone)
         {
             Canvas.SetActive(true);
@@ -137,7 +150,7 @@ public class playerController : MonoBehaviour
 
     private void Idle()
     {
-        if(NPC != null)
+        if (NPC != null)
             MeetNPC();
         SceneName = SceneManager.GetActiveScene().name;
         QuestState();
@@ -426,28 +439,21 @@ public class playerController : MonoBehaviour
 
             if (!isDefence)
             {
-                GameObject go = Instantiate(Damagetxt, transform.position, Quaternion.identity);
+                SpawnDamageText(enemyDamage, transform.position);
                 anim.SetTrigger("IsHit");
-                HitEffect.transform.position = other.transform.position;
+                HitEffect.transform.position = transform.position;
                 StartCoroutine(HitEffectOn());
-                GameManager.Instance.currentHp -= enemyDamage;
-                go.GetComponent<DamageText>().Damage = enemyDamage;
             }
             if (isDefence)
             {
-                GameObject go = Instantiate(Damagetxt, transform.position, Quaternion.identity);
                 anim.SetTrigger("IsDefenceHit");
                 StartCoroutine(DefenceEffectOn());
                 if (enemyDamage > GameManager.Instance.def)
-                {
-                    GameManager.Instance.currentHp -= enemyDamage - (int)GameManager.Instance.def;
-                    go.GetComponent<DamageText>().Damage = enemyDamage - (int)GameManager.Instance.def;
-                }
+                    SpawnDamageText(enemyDamage - (int)GameManager.Instance.def, transform.position);
+
                 else if (enemyDamage <= GameManager.Instance.def)
-                {
-                    GameManager.Instance.currentHp -= 1;
-                    go.GetComponent<DamageText>().Damage = 1;
-                }
+                    SpawnDamageText(1, transform.position);
+
                 currentTime = 0;
                 isDefence = false;
                 anim.SetBool("IsDefence", isDefence);
@@ -463,6 +469,21 @@ public class playerController : MonoBehaviour
                 StartCoroutine(ClearBossUI());
         }
     }
+    void SpawnDamageText(int GetDamage, Vector3 SpawnPos)
+    {
+        for (int i = 0; i < SpawnCount; i++)
+        {
+            if (!Textlist[i].activeSelf)
+            {
+                Textlist[i].transform.position = SpawnPos;
+                Textlist[i].SetActive(true);
+                Textlist[i].GetComponent<DamageText>().Damage = GetDamage;
+                GameManager.Instance.currentHp -= GetDamage;
+                return;
+            }
+        }
+    }
+
 
     IEnumerator DefenceEffectOn()
     {

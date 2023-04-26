@@ -12,15 +12,21 @@ public class DamageText : MonoBehaviour
     {
         Damagetxt = GetComponent<TextMeshPro>();
         Damagetxt.text = Damage.ToString();
-        Destroy(gameObject, 1f);
     }
 
     void Update()
     {
-        transform.LookAt(Camera.main.transform);   
+        transform.LookAt(Camera.main.transform);
+        //transform.rotation = Quaternion.identity;
     }
     void OnEnable()
     {
-        GetComponent<Rigidbody>().AddForce(new Vector3(Random.Range(-50, 50),Random.Range(200, 400),Random.Range(-100, -300)));
+        GetComponent<Rigidbody>().AddForce(50, 350, 0);
+        StartCoroutine(textActiveFalse());
+    }
+    IEnumerator textActiveFalse()
+    {
+        yield return new WaitForSeconds(1f);
+        gameObject.SetActive(false);
     }
 }
