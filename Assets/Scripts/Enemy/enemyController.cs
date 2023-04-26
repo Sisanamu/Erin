@@ -339,20 +339,6 @@ public class enemyController : MonoBehaviour
             }
         }
     }
-    void SpawnDamageText(int GetDamage, Vector3 SpawnPos)
-    {
-        for (int i = 0; i < SpawnCount; i++)
-        {
-            if (!Textlist[i].activeSelf)
-            {
-                Textlist[i].transform.position = SpawnPos;
-                Textlist[i].SetActive(true);
-                Textlist[i].GetComponent<DamageText>().Damage = GetDamage;
-                CurrentHp -= GetDamage;
-                return;
-            }
-        }
-    }
     protected virtual void AimUi()
     {
         TargettingImage.transform.position = Camera.main.WorldToScreenPoint(transform.position + new Vector3(0, 0.5f, 0));
