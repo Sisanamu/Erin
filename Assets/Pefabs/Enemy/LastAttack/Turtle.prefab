@@ -852,6 +852,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!135 &3263712327340212489
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -923,12 +924,12 @@ MonoBehaviour:
   Enemy_HP: {fileID: 1815064334243836767}
   Monster_Name: {fileID: 104762784805096537}
   Canvas: {fileID: 8179357992894818182}
-  Damagetxt: {fileID: 7265928938177384946, guid: d409b84cd06794f4c8f7c7426e3488f5, type: 3}
   HitEffect: {fileID: 5643977522030623217}
   E_STATE: 0
   anim: {fileID: 0}
   rgd: {fileID: 0}
   target: {fileID: 0}
+  Player: {fileID: 0}
   HitBox: {fileID: 3674041103884222455}
   SpawnPoint: {fileID: 0}
   Target: []
@@ -964,6 +965,9 @@ MonoBehaviour:
   CanDefence: 1
   isDefence: 0
   isDie: 0
+  Damagetxt: {fileID: 7265928938177384946, guid: d409b84cd06794f4c8f7c7426e3488f5, type: 3}
+  SpawnCount: 6
+  Textlist: []
   DeBuffEffect: {fileID: 8450310655133409545}
   Gold: 7
   exp: 60
