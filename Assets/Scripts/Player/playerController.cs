@@ -436,8 +436,7 @@ public class playerController : MonoBehaviour
         if (other.CompareTag("enemyHitBox"))
         {
             enemyDamage = other.GetComponentInParent<enemyController>().Damage;
-
-            if (!isDefence)
+if (!isDefence)
             {
                 anim.SetTrigger("IsHit");
                 StartCoroutine(HitEffectOn());
@@ -445,7 +444,6 @@ public class playerController : MonoBehaviour
                     SpawnDamageText(1, transform.position);
                 else
                     SpawnDamageText(enemyDamage, transform.position);
-            }
             if (isDefence)
             {
                 anim.SetTrigger("IsDefenceHit");
@@ -485,7 +483,6 @@ public class playerController : MonoBehaviour
             }
         }
     }
-
 
     IEnumerator DefenceEffectOn()
     {

@@ -79,8 +79,15 @@ public class enemyController : MonoBehaviour
     [SerializeField] public float def;
     [SerializeField] public int Damage;
 
+
     private void Awake()
     {
+        for (int i = 0; i < SpawnCount; i++)
+        {
+            GameObject obj = Instantiate(Damagetxt, transform);
+            obj.SetActive(false);
+            Textlist.Add(obj);
+        }
         col = GetComponent<Collider>();
         anim = GetComponent<Animator>();
         rgd = GetComponent<Rigidbody>();
@@ -259,7 +266,7 @@ public class enemyController : MonoBehaviour
         Gizmos.DrawSphere(transform.position, FindRange);
     }
 
-    protected virtual void OnTriggerEnter(Collider other)
+   protected virtual void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("playerHitBox"))
         {
@@ -332,7 +339,20 @@ public class enemyController : MonoBehaviour
             }
         }
     }
-
+    void SpawnDamageText(int GetDamage, Vector3 SpawnPos)
+    {
+        for (int i = 0; i < SpawnCount; i++)
+        {
+            if (!Textlist[i].activeSelf)
+            {
+                Textlist[i].transform.position = SpawnPos;
+                Textlist[i].SetActive(true);
+                Textlist[i].GetComponent<DamageText>().Damage = GetDamage;
+                CurrentHp -= GetDamage;
+                return;
+            }
+        }
+    }
     protected virtual void AimUi()
     {
         TargettingImage.transform.position = Camera.main.WorldToScreenPoint(transform.position + new Vector3(0, 0.5f, 0));
