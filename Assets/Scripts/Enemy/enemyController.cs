@@ -14,7 +14,6 @@ public class enemyController : MonoBehaviour
     [SerializeField] protected GameObject Enemy_HP;
     [SerializeField] protected Text Monster_Name;
     [SerializeField] protected GameObject Canvas;
-    [SerializeField] protected GameObject Damagetxt;
     [SerializeField] protected GameObject HitEffect;
 
     [SerializeField] protected creature_STATE E_STATE = creature_STATE.IDLE;
@@ -74,8 +73,20 @@ public class enemyController : MonoBehaviour
     [SerializeField] public float def;
     [SerializeField] public int Damage;
 
+     [Header("DamageText")]
+    [SerializeField] protected GameObject Damagetxt;
+    public int SpawnCount;
+    public List<GameObject> Textlist = new List<GameObject>();
+    GameObject TextParent;
+
     private void Awake()
     {
+        for (int i = 0; i < SpawnCount; i++)
+        {
+            GameObject obj = Instantiate(Damagetxt, transform);
+            obj.SetActive(false);
+            Textlist.Add(obj);
+        }
         col = GetComponent<Collider>();
         anim = GetComponent<Animator>();
         rgd = GetComponent<Rigidbody>();
@@ -255,7 +266,7 @@ public class enemyController : MonoBehaviour
             anim.ResetTrigger("IsAttack");
             if (CanDefence)
             {
-                GameObject go = Instantiate(Damagetxt, transform.position, Quaternion.identity);
+                
                 if (isDefence)
                 {
                     anim.ResetTrigger("IsAttack");
@@ -264,13 +275,11 @@ public class enemyController : MonoBehaviour
                     SoundManager.instance.PlayEffects("DefenceHit");
                     if (GetDamage > def)
                     {
-                        CurrentHp -= Mathf.Abs(GetDamage - def);
-                        go.GetComponent<DamageText>().Damage = Mathf.Abs(GetDamage - (int)def);
+                        SpawnDamageText(Mathf.Abs(GetDamage - (int)def), transform.position);
                     }
                     else if (GetDamage <= def)
                     {
-                        CurrentHp -= 1;
-                        go.GetComponent<DamageText>().Damage = 1;
+                        SpawnDamageText(1, transform.position);
                     }
                     isDefence = false;
                     anim.ResetTrigger("DefenceHit");
@@ -281,27 +290,23 @@ public class enemyController : MonoBehaviour
                     anim.SetTrigger("IsHit");
                     SoundManager.instance.PlayEffects("Hit");
                     StartCoroutine(HitEffectOn());
-                    go.GetComponent<DamageText>().Damage = GetDamage;
-                    CurrentHp -= GetDamage;
+                    SpawnDamageText(GetDamage, transform.position);
                     Defence();
                 }
 
             }
-            if (!CanDefence)
+            else
             {
-                GameObject go = Instantiate(Damagetxt, transform.position, Quaternion.identity);
                 anim.SetTrigger("IsHit");
                 SoundManager.instance.PlayEffects("Hit");
                 if (GetDamage > def)
                 {
                     StartCoroutine(HitEffectOn());
-                    go.GetComponent<DamageText>().Damage = GetDamage;
-                    CurrentHp -= GetDamage;
+                    SpawnDamageText(GetDamage, transform.position);
                 }
                 else if (GetDamage <= def)
                 {
-                    CurrentHp -= 1;
-                    go.GetComponent<DamageText>().Damage = 1;
+                    SpawnDamageText(1, transform.position);
                 }
             }
             if (CurrentHp <= 0)
@@ -314,6 +319,20 @@ public class enemyController : MonoBehaviour
                     questEnemy();
                     StartCoroutine(EnemyRevive());
                 }
+            }
+        }
+    }
+    void SpawnDamageText(int GetDamage, Vector3 SpawnPos)
+    {
+        for (int i = 0; i < SpawnCount; i++)
+        {
+            if (!Textlist[i].activeSelf)
+            {
+                Textlist[i].transform.position = SpawnPos;
+                Textlist[i].SetActive(true);
+                Textlist[i].GetComponent<DamageText>().Damage = GetDamage;
+                CurrentHp -= GetDamage;
+                return;
             }
         }
     }

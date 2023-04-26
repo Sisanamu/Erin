@@ -441,8 +441,14 @@ public class playerController : MonoBehaviour
             {
                 SpawnDamageText(enemyDamage, transform.position);
                 anim.SetTrigger("IsHit");
-                HitEffect.transform.position = transform.position;
                 StartCoroutine(HitEffectOn());
+
+                if (enemyDamage > GameManager.Instance.def)
+                {
+                    SpawnDamageText(GetDamage, transform.position);
+                }
+                else if (enemyDamage <= GameManager.Instance.def)
+                    SpawnDamageText(1, transform.position);
             }
             if (isDefence)
             {
@@ -484,7 +490,6 @@ public class playerController : MonoBehaviour
         }
     }
 
-
     IEnumerator DefenceEffectOn()
     {
         DefenceEffect.SetActive(true);
@@ -495,6 +500,7 @@ public class playerController : MonoBehaviour
     }
     IEnumerator HitEffectOn()
     {
+        HitEffect.transform.position = transform.position;
         HitEffect.SetActive(true);
         SoundManager.instance.PlayEffects(soundName[0]);
         yield return new WaitForSeconds(1f);
