@@ -436,37 +436,38 @@ public class playerController : MonoBehaviour
         if (other.CompareTag("enemyHitBox"))
         {
             enemyDamage = other.GetComponentInParent<enemyController>().Damage;
-if (!isDefence)
+            if (!isDefence)
             {
                 anim.SetTrigger("IsHit");
                 StartCoroutine(HitEffectOn());
-                if(enemyDamage <= GameManager.Instance.def)
+                if (enemyDamage <= GameManager.Instance.def)
                     SpawnDamageText(1, transform.position);
                 else
                     SpawnDamageText(enemyDamage, transform.position);
-            if (isDefence)
-            {
-                anim.SetTrigger("IsDefenceHit");
-                StartCoroutine(DefenceEffectOn());
-                if (enemyDamage > GameManager.Instance.def)
-                    SpawnDamageText(enemyDamage - (int)GameManager.Instance.def, transform.position);
+                if (isDefence)
+                {
+                    anim.SetTrigger("IsDefenceHit");
+                    StartCoroutine(DefenceEffectOn());
+                    if (enemyDamage > GameManager.Instance.def)
+                        SpawnDamageText(enemyDamage - (int)GameManager.Instance.def, transform.position);
 
-                else if (enemyDamage <= GameManager.Instance.def)
-                    SpawnDamageText(1, transform.position);
+                    else if (enemyDamage <= GameManager.Instance.def)
+                        SpawnDamageText(1, transform.position);
 
-                currentTime = 0;
-                isDefence = false;
-                anim.SetBool("IsDefence", isDefence);
+                    currentTime = 0;
+                    isDefence = false;
+                    anim.SetBool("IsDefence", isDefence);
+                }
+                if (GameManager.Instance.currentHp <= 0)
+                {
+                    isDie = true;
+                    P_STATE = creature_STATE.Death;
+                    anim.SetTrigger("Die");
+                    StartCoroutine(reviveWindow());
+                }
+                if (ClearBoss)
+                    StartCoroutine(ClearBossUI());
             }
-            if (GameManager.Instance.currentHp <= 0)
-            {
-                isDie = true;
-                P_STATE = creature_STATE.Death;
-                anim.SetTrigger("Die");
-                StartCoroutine(reviveWindow());
-            }
-            if (ClearBoss)
-                StartCoroutine(ClearBossUI());
         }
     }
     void SpawnDamageText(int GetDamage, Vector3 SpawnPos)
