@@ -25,7 +25,6 @@ public class CamController : MonoBehaviour
         if(Physics.Raycast(PlayerPos, PlayerCam, out hit, 15.5f, Structure))
         {
             Debug.DrawLine(PlayerPos, PlayerCam, Color.red, 15.5f);
-            Debug.Log(hit.point);
             float dist = (hit.point - Player.position).magnitude * 0.8f;
             transform.localPosition = _delta.normalized * dist;
         }
